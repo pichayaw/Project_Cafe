@@ -7,11 +7,11 @@
     <div class="beverage">
       <h2>Baverage</h2>
       <h3>Highlight Beverages</h3>
-      <img class="drink" src="@/assets/drink2.jpg" alt="drink2">
-      <img class="drink" src="@/assets/drink1.jpg" alt="drink1">
-      <img class="drink" src="@/assets/drink3.jpg" alt="drink3">
+      <img class="df" src="@/assets/drink2.jpg" alt="drink2">
+      <img class="df" src="@/assets/drink1.jpg" alt="drink1">
+      <img class="df" src="@/assets/drink3.jpg" alt="drink3">
 
-      <b-table sticky-header="500px" :items="beverage">
+      <b-table sticky-header="400px" :items="beverage">
         <thead>
           <tr>
             <th>Menu</th>
@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row,rows) in info" :key="rows">
+          <tr v-for="(row,rows) in beverage" :key="rows">
             <td>{{row.menu}}</td>
             <td>{{row.hot}}</td>
             <td>{{row.iced}}</td>
@@ -29,18 +29,18 @@
           </tr>
         </tbody>
       </b-table>
-      <img class="drink" src="@/assets/drink4.jpg" alt="drink4">
-      <img class="drink" src="@/assets/drink6.jpg" alt="drink6">
-      <img class="drink" src="@/assets/drink5.jpg" alt="drink5">
+      <img class="df" src="@/assets/drink4.jpg" alt="drink4">
+      <img class="df" src="@/assets/drink6.jpg" alt="drink6">
+      <img class="df" src="@/assets/drink5.jpg" alt="drink5">
     </div>
 
 
     <div class="food">
       <h2>Food</h2>
       <h3>Highlight Food</h3>
-      <img src="@/assets/food1.jpg" alt="food1">
-      <img src="@/assets/food2.jpg" alt="food2">
-      <img src="@/assets/food3.jpg" alt="food3">
+      <img class="df" src="@/assets/food1.jpg" alt="food1">
+      <img class="df" src="@/assets/food2.jpg" alt="food2">
+      <img class="df" src="@/assets/food3.jpg" alt="food3">
       <b-table sticky-header="300px" :items="food">
         <thead>
           <tr>
@@ -57,9 +57,9 @@
           </tr>
         </tbody>
       </b-table>
-      <img src="@/assets/food4.jpg" alt="food4">
-      <img src="@/assets/food6.jpg" alt="food6">
-      <img src="@/assets/food5.jpg" alt="food5">
+      <img class="df" src="@/assets/food4.jpg" alt="food4">
+      <img class="df" src="@/assets/food6.jpg" alt="food6">
+      <img class="df" src="@/assets/food5.jpg" alt="food5">
     </div>
   </div>
 </template>
@@ -94,7 +94,7 @@ export default{
   methods: {
       fetchInfo(){
         this.beverage=Menu.getters.data1
-        console.log(this.info)
+        console.log(this.beverage)
         this.food=Menu.getters.data2
         
       }
@@ -110,7 +110,7 @@ export default{
   img{
     width: 25%;
   }
-  .beverage{
+  .beverage,.food{
     h2{
       margin: 40px;
       border-bottom: 2px solid gray;
@@ -124,9 +124,11 @@ export default{
       letter-spacing: 2px;
       text-align: left;
     }
-    .drink{
+    .df{
       margin: 20px;
     }
+    
   }
+
 }
 </style>
