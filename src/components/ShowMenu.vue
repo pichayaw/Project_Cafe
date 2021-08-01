@@ -1,8 +1,48 @@
 <template>
-  <div class="menu">
-    <img class="mySlides" alt="CScafe1" src="@/assets/cafe1.jpg" style="width:100%">
-    <img class="mySlides" src="@/assets/cafe2.jpg" alt="CScafe2" style="width:100%">
-    <img class="mySlides" src="@/assets/cafe33.jpg" alt="CScafe3" style="width:100%">
+  <div>
+    <div class="menu">
+      <div class="ontop">
+        
+        <b-carousel
+          id="carousel-fade"
+          style="text-shadow: 0px 0px 2px #000"
+          fade
+          indicators
+
+          >
+          <b-carousel-slide>
+          <template #img>
+            <img
+              class="d-block img-fluid w-75 mx-auto d-block"
+              width="100"
+              height="300"
+              src="@/assets/cafe1.jpg"
+            >
+          </template>
+          </b-carousel-slide>
+          <b-carousel-slide>
+          <template #img>
+            <img
+              class="d-block img-fluid w-75 mx-auto d-block"
+              width="100"
+              height="300"
+              src="@/assets/cafe2.jpg"
+            >
+          </template>
+          </b-carousel-slide>
+          <b-carousel-slide>
+          <template #img>
+            <img
+              class="d-block img-fluid w-75 mx-auto d-block"
+              width="1024"
+              height="480"
+              src="@/assets/cafe33.jpg"
+            >
+          </template>
+          </b-carousel-slide>
+          </b-carousel>
+          </div>
+
 
     <div class="beverage">
       <h2>Baverage</h2>
@@ -61,25 +101,13 @@
       <img class="df" src="@/assets/food6.jpg" alt="food6">
       <img class="df" src="@/assets/food5.jpg" alt="food5">
     </div>
+    </div>
   </div>
 </template>
 
 <script>
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 2000);
-}
 import Menu from "@/store/Menu"
+
 export default{
   data1(){
     return{
@@ -99,6 +127,7 @@ export default{
         
       }
   }
+  
 }
 
 </script>
@@ -110,6 +139,7 @@ export default{
   img{
     width: 25%;
   }
+  color: #737f8b;
   .beverage,.food{
     h2{
       margin: 40px;

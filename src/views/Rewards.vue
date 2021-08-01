@@ -1,5 +1,18 @@
 <template>
-  <div class="rewards">
-    <h1>This is an about page</h1>
+  <div>
+    <show-rewards></show-rewards>>
   </div>
 </template>
+
+<script>
+import ShowRewards from '@/components/ShowRewards.vue'
+
+export default {
+  components: {
+    ShowRewards
+  }
+}
+</script>
+
+<style>
+</style>

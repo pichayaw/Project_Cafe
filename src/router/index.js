@@ -12,7 +12,7 @@ const routes = [
     component: Menu
   },
   {
-    path: '/',
+    path: '/rewards',
     name: 'Rewards',
     component: Rewards
   }

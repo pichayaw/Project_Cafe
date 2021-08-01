@@ -19,7 +19,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #737f8b;
   h5{
     color: white;
     margin: 0 2rem 0 2rem;
