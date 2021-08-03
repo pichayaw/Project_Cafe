@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "beverages",
+  "info": {
+    "name": "Beverage",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "menu": {
+      "type": "string"
+    },
+    "hot_style": {
+      "type": "string"
+    },
+    "ice_style": {
+      "type": "string"
+    },
+    "blended_style": {
+      "type": "string"
+    }
+  }
+}

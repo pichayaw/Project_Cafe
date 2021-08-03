@@ -6,7 +6,7 @@
 
 <script>
 import ShowRewards from '@/components/ShowRewards.vue'
-
+import AuthUser from '@/services/AuthUser'
 export default {
   components: {
     ShowRewards

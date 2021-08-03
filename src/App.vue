@@ -6,7 +6,10 @@
         CS cafe 
         <b-icon icon="cup" animation="throb" font-scale="1.2"></b-icon></p>
       <router-link to="/">MENU</router-link> <h5>|</h5>
-      <router-link to="/rewards">REWARDS</router-link>
+      <router-link to="/rewards">REWARDS</router-link><h5>|</h5>
+      <router-link to="/login">LOGIN</router-link><h5>|</h5>
+      <router-link to="/logout">LOGOUT</router-link>
+      
       
     </div>
     <router-view/>
