@@ -6,13 +6,9 @@
 
 <script>
 import ShowMenu from '@/components/ShowMenu.vue'
-import AuthUser from "@/store/AuthUser";
+
 export default {
-  methods: {
-    isAuthen() {
-      return AuthUser.getters.isAuthen;
-    },
-  },
+  
    components: {
     ShowMenu
   }

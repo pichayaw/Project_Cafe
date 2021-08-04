@@ -12,7 +12,7 @@ export default new Vuex.Store({
  },
 
   getters: {
-    menu: (state) => state.data,
+    food: (state) => state.data,
     
   },
 
@@ -25,9 +25,9 @@ export default new Vuex.Store({
   },
 
   actions: {
-    async fetchMenu({commit})
+    async fetchFood({commit})
     {
-      let res = await Axios.get(api_endpoint + "/beverages")
+      let res = await Axios.get(api_endpoint + "/foods")
       console.log(res.data);
       commit("fetch" , res)
     }
