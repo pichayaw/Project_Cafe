@@ -1,13 +1,18 @@
 <template>
   <div>
-    <show-rewards></show-rewards>>
+    <show-rewards v-if="!isAuthen()"></show-rewards>>
   </div>
 </template>
 
 <script>
 import ShowRewards from '@/components/ShowRewards.vue'
-import AuthUser from '@/services/AuthUser'
+import AuthUser from "@/store/AuthUser";
 export default {
+  methods: {
+    isAuthen() {
+      return AuthUser.getters.isAuthen;
+    },
+  },
   components: {
     ShowRewards
   }

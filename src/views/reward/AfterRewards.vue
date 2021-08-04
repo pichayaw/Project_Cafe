@@ -1,20 +1,25 @@
 <template>
   <div>
-    <show-menu></show-menu>
+    <show-after-reward v-if="isAhthen()"></show-after-reward>
   </div>
 </template>
 
 <script>
-import ShowMenu from '@/components/ShowMenu.vue'
+import ShowAfterReward from '@/components/ShowAfterReward.vue'
 import AuthUser from "@/store/AuthUser";
+
 export default {
   methods: {
     isAuthen() {
       return AuthUser.getters.isAuthen;
     },
   },
-   components: {
-    ShowMenu
+  components: {
+    ShowAfterReward
   }
-};
+}
 </script>
+
+<style
+    
+</style>

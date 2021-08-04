@@ -1,20 +1,33 @@
 <template>
   <div id="app">
     <div id="nav">
-      <p> 
+      <p>
         <b-icon icon="cup-straw" animation="throb" font-scale="1.2"></b-icon>
-        CS cafe 
-        <b-icon icon="cup" animation="throb" font-scale="1.2"></b-icon></p>
-      <router-link to="/">MENU</router-link> <h5>|</h5>
-      <router-link to="/rewards">REWARDS</router-link><h5>|</h5>
-      <router-link to="/login">LOGIN</router-link><h5>|</h5>
-      <router-link to="/logout">LOGOUT</router-link>
-      
-      
+        CS cafe
+        <b-icon icon="cup" animation="throb" font-scale="1.2"></b-icon>
+      </p>
+      <router-link to="/">MENU</router-link>
+      <h5>|</h5>
+      <router-link to="/rewards" >REWARDS</router-link>
+      <h5>|</h5>
+      <router-link to="/login" v-if="!isAuthen()">LOGIN</router-link>
+      <h5>|</h5>
+      <router-link to="/logout" v-if="isAuthen()">LOGOUT</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+import AuthUser from "@/store/AuthUser";
+export default {
+  methods: {
+    isAuthen() {
+      return AuthUser.getters.isAuthen;
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -22,7 +35,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  h5{
+  h5 {
     color: white;
     margin: 0 2rem 0 2rem;
   }
@@ -31,7 +44,7 @@
 #nav {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   display: flex;
-  p{
+  p {
     text-align: left;
     margin-right: 3rem;
     color: white;

@@ -54,7 +54,7 @@ export default
                 //console.log(e.response.data.message[0].messages[0].message)
                 return{
                     success : false ,
-                    massage : e.response.data.message[0].messages[0].message
+                    message : e.response.data.message[0].messages[0].message
                 }
             }
             

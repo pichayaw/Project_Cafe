@@ -67,6 +67,10 @@
     },
     "birth_year": {
       "type": "string"
+    },
+    "diamond_point": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

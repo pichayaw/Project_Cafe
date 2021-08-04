@@ -30,7 +30,7 @@
 
 <script>
 //import AuthService from "@/services/AuthService";
-import AuthUser from '@/services/AuthService'
+import AuthUser from '@/store/AuthUser'
 export default {
   data() {
     return {
@@ -42,12 +42,13 @@ export default {
   },
   methods: {
     async login() {
-      let res = await AuthService.login(this.from);
+      //let res = await AuthService.login(this.from);
+      let res = await AuthUser.dispatch('login' , this.from)
       if (res.success) {
         this.$swal("Login success", `Welcome, ${res.user.username}`, "success");
         this.$router.push("/");
       } else {
-        this.$swal("Login Failed", res.massage, "error");
+        this.$swal("Login Failed", res.message, "error");
       }
     },
   },
