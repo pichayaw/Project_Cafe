@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Menu from '@/views/Menu.vue'
 import BeforeRewards from '@/views/reward/BeforeRewards.vue'
-import AfterRewards from '@/views/reward/AfterRewards.vue'
 import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
 
@@ -19,11 +18,7 @@ const routes = [
     name: 'Rewards',
     component: BeforeRewards
   },
-  {
-    path: '/rewards',
-    name: 'Rewards',
-    component: AfterRewards
-  },
+  
   {
     path: '/login',
     name: 'login',

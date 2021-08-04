@@ -125,7 +125,7 @@ export default{
         console.log(this.beverage)
         this.food=Menu.getters.data2
         
-      }
+}
   }
   
 }
