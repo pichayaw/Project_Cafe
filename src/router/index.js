@@ -5,6 +5,7 @@ import BeforeRewards from '@/views/reward/BeforeRewards.vue'
 import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
 import AdminReward from '@/views/admin/AdminReward'
+import Register from '@/views/auth/Register'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout
+  },
+  {
+    path: '/rewards/register',
+    name: 'Register',
+    component: Register
   },
 ]
 
