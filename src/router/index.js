@@ -4,6 +4,7 @@ import Menu from '@/views/Menu.vue'
 import BeforeRewards from '@/views/reward/BeforeRewards.vue'
 import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
+import AdminReward from '@/views/admin/AdminReward'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,12 @@ const routes = [
     path: '/rewards',
     name: 'Rewards',
     component: BeforeRewards
+  },
+
+  {
+    path: '/admin/rewards',
+    name: 'AdminReward',
+    component: AdminReward
   },
   
   {

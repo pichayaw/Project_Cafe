@@ -13,6 +13,11 @@ export default
         return (user !== "") && (jwt !== "")
     },
 
+    isAdmin()
+    {
+        return (user.username === "admin") && (jwt !== "")
+    },
+
     getUser ()
     {
         return user

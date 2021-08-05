@@ -47,10 +47,12 @@ export default {
       if (res.success) {
         this.$swal("Login success", `Welcome, ${res.user.username}`, "success");
         this.$router.push("/");
+        
       } else {
         this.$swal("Login Failed", res.message, "error");
       }
     },
+    
   },
 };
 </script>
