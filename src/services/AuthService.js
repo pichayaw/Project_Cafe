@@ -13,9 +13,15 @@ export default
         return (user !== "") && (jwt !== "")
     },
 
-    isAdmin()
-    {
-        return (user.username === "admin") && (jwt !== "")
+    getApiHeader() {
+        if (jwt !== "") {
+            return {
+                headers: {
+                    Authorization: `Bearer ${jwt}`
+                }
+            }
+        }
+        return {}
     },
 
     getUser ()
