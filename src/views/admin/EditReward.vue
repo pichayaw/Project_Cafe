@@ -17,6 +17,10 @@
             <button @click="exit">Exit</button>
         </div>
 
+        <div>
+            <button @click="deleteReward">DELETE</button>
+        </div>
+
 
     </div>
 </template>
@@ -70,7 +74,25 @@ export default {
 
         exit() {
             this.$router.push('/admin/rewards')
-        }
+        },
+
+        async deleteReward() {
+            let payload = {
+                id: this.id,
+                menu: this.form.menu,
+                diamonds: this.form.diamonds
+            }
+
+            console.log("TEST",payload)
+            let res = await RewardApiStore.dispatch("deleteReward", payload)
+            console.log(res)
+            if (res.success) {
+                this.$router.push("/admin/rewards")
+            }
+            else {
+                this.$swal("Add Failed", res.message, "error")
+            }
+        },
 
 
 

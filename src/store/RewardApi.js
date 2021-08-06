@@ -90,30 +90,88 @@ export default new Vuex.Store({
                 menu: payload.menu,
                 diamonds: payload.diamonds
             }
-
             console.log('body', payload)
-            let res = await Axios.put(url, body)
             
-            if (res.status === 200) {
-                console.log(payload.id)
-                console.log("commit('edit')", payload.index, res.data)
-                commit("edit", payload.index, res.data)
-                return {
-                    success: true,
-                    data: res.data
+            try {
+                let headers = AuthService.getApiHeader()
+                let res = await Axios.put(url, body, headers)
+
+                if (res.status === 200) {
+                    console.log(payload.id)
+                    console.log("commit('edit')", payload.index, res.data)
+                    commit("edit", payload.index, res.data)
+                    return {
+                        success: true,
+                        data: res.data
+                      }
+                  } 
+                  else {
+                        return {
+                          success: false,
+                          message: "Unknown status code: " + res.status
+                        }
                   }
-              } 
-              else {
-                console.log(payload.id)
-                console.log(err)
-                console.error(res)
+                
+            } catch (e) {
+                if (e.response.state === 403) {
+                    console.error(e.response.data.message)
                     return {
                       success: false,
-                      message: "Unknown status code: " + res.status
+                      message: e.response.data.message,
                     }
-              }
-
+                  }
+                  else {
+                      return {
+                        success: false,
+                        message: "Unknown error:" + e.response.data
+                      }
+                  }
+            }
+            
         },
+
+        async deleteReward({ commit }, payload) {
+            console.log('payload', payload)
+            
+            let url = `${api_endpoint}/rewards/${payload.id}` 
+
+             try {
+                let headers = AuthService.getApiHeader()
+                let res = await Axios.delete(url, headers)
+
+                if (res.status === 200) {
+                    console.log(payload.id)
+                    console.log("commit('edit')", payload.index, res.data)
+                    commit("edit", payload.index, res.data)
+                    return {
+                        success: true,
+                        data: res.data
+                        }
+                    }   
+                  else {
+                        return {
+                          success: false,
+                          message: "Unknown status code: " + res.status
+                        }
+                  }
+                
+             } catch (e) {
+                if (e.response.state === 403) {
+                    console.error(e.response.data.message)
+                    return {
+                      success: false,
+                      message: e.response.data.message,
+                    }
+                  }
+                  else {
+                      return {
+                        success: false,
+                        message: "Unknown error:" + e.response.data
+                      }
+                  }
+             }
+
+        }
 
 
 
