@@ -16,7 +16,7 @@
         <p>
           1 <br />
           Create an account <br />
-          <router-link to="/rewards/register">register</router-link>
+          <router-link to="/rewards/register">click</router-link>
         </p>
         <!--เชื่อม link สมัคร user ผู้ใช้-->
         <p>
@@ -31,6 +31,8 @@
         <!--เชื่อม link เข้าสู่ระบบผู้ใช้-->
       </div>
     </div>
+
+    <div class="collectandgetdrink">
     <div class="collect">
       <p>
         As a member you’ll collect Diamonds on almost everything you buy and
@@ -40,7 +42,8 @@
         <b-icon icon="gem" font-scale="1.5"></b-icon> Collect 1 Diamonds per 25
         Baht
       </h3>
-
+    </div>
+    <div class="getdrink">
       <h3>
         <b-icon icon="cup-straw" font-scale="1.5"></b-icon>Get your favorite
         drink for free
@@ -49,28 +52,8 @@
         use 25 Diamonds start
       </p>
     </div>
-
-    <div class="rewards">
-
-      <!-- <div>
-        <b-table striped hover :items="items"></b-table>
-      </div> -->
-
-      <table sticky-header="400px">
-          <thead>
-            <tr>
-              <th>Menu</th>
-              <th>Diamonds</th>
-            </tr>
-          </thead>
-        <tbody>
-            <tr v-for="(row,rows) in rewards" :key="rows">
-              <td>{{row.Menu}}</td>
-              <td>{{row.Diamonds}}</td>
-            </tr>
-         </tbody>
-        </table>
     </div>
+
   </div>
 </template>
 
@@ -143,16 +126,32 @@ export default{
   }
 }
 
-.collect {
-  p {
-    margin: 0 0 40px 0;
-  }
-  h3 {
-    margin: 40px 0 0 0;
-  }
-  margin: 20px;
+.collectandgetdrink {
   font-size: 1.3em;
 }
 
+.collect{
+  p{
+    border: solid #8D6E63;
+    height: 120px;
+    background-color: #8D6E63;
+    padding-top: 30px;
+    color: white;
+  }
+  h3{
+    padding-top: 30px;
+    border: solid#A1887F  ;
+    height: 120px;
+    background-color:#A1887F  ;
+    color: white;
+  } 
+}
+.getdrink{
+  padding-top: 20px;
+  border: solid#BCAAA4;
+  height: 120px;
+  background-color:#BCAAA4;
+  color: white;
+}
 
 </style>
