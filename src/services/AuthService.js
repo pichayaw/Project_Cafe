@@ -29,13 +29,13 @@ export default
 
     getJwt ()
     {
-        return JSON.parse(localStorage.getItem('auth-cafe')).jwt
+        return JSON.parse(localStorage.getItem('auth_cafe')).jwt
     },
 
     getApiHeader()
     {
         //ใช้สำหรับเข้าถึง api ตาม role ex. user,addmin -> delete,add data
-        let jwt = JSON.parse(localStorage.getItem('auth-cafe')).jwt
+        let jwt = JSON.parse(localStorage.getItem('auth_cafe')).jwt
         if (jwt !== ''){
             return{
                 headers:{
@@ -132,7 +132,7 @@ export default
 
     async topup(money)
     {
-        //console.log(this.jwt);
+        console.log(this.jwt);
         let header = this.getApiHeader()
         console.log(header);
         //let id = this.user.id
