@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import AuthService from '@/services/AuthService'
 
-const api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhost:1337"
+let api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhost:1337"
 
 Vue.use(Vuex)
 
@@ -82,12 +82,30 @@ export default new Vuex.Store({
 
         },
 
-        // async editReward({ commit }, payload) {
-        //     //edit
-        // },
+        async editReward({ commit }, payload) {
+            console.log('payload', payload)
+
+            let url = `${api_endpoint}/rewards/${payload.id}` 
+            let body = {
+                menu: payload.menu,
+                diamonds: payload.diamonds
+            }
+
+            let res = await Axios.put(url, body)
+            console.log(payload.id)
+            if (res.status === 200) {
+                console.log("commit('edit')", payload.index, res.data)
+                commit("edit", payload.index, res.data)
+              } 
+              else {
+                console.log(payload.id)
+                console.log(err)
+              }
+
+        },
 
 
-        
+
     },
     
 

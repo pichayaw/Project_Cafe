@@ -4,9 +4,10 @@
         <h2>Add New Reward</h2>
         
         <br>
-        <form @submit.prevent="addReward">
+        <!-- <form @submit.prevent="addReward"> type="submit"-->
+        <div>
             <div>
-                <label for="menu">Menu</label>
+                <label for="menu">Menu </label>
                 <br>
                 <input v-model="form.menu" type="text">
             </div>
@@ -18,9 +19,9 @@
             </div>
             <br>
             <div>
-                <button type="submit" >ADD</button>
+                <button @click="addReward" >ADD</button>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 

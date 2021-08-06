@@ -14,7 +14,11 @@
                     <td>{{ index + 1 }}</td>
                     <td>{{ rewa.menu }}</td>
                     <td>{{ rewa.diamonds }}</td>
-                    <td v-if="isAuthen()">Edit</td>
+                    <td v-if="isAuthen()">
+                        <router-link :to="{name: 'AdminEditReward', params: {id: rewa.id}}">
+                            Edit
+                        </router-link>
+                    </td>
 
                 </tr>
             </tbody>
@@ -33,6 +37,7 @@ export default {
             rewards: [],
             // editIndex: -1,
                 form : {
+                    id: '',
                     menu: '',
                     diamonds: ''
                 }
