@@ -12,13 +12,14 @@ export default {
         RewardCreateForm 
     },
 
-    // mounted() {
-    //     if (AuthUser.getters.user.username != "admin") {
-    //         this.$swal("Restricted Area", `You have no permission, You are customer (${AuthUser.getters.user.username})` , " warning")
-    //         this.$router.push("/")
-    //     }
+    mounted() {
+        if ( AuthUser.getters.id !== 2) {
+            console.log("deep",AuthUser.getters.user.username)
+            this.$swal("Restricted Area", `You have no permission, You are customer (${AuthUser.getters.user.username})` , " warning")
+            this.$router.push("/rewards")
+        }
         
-    // }
+    }
 
 
 }
