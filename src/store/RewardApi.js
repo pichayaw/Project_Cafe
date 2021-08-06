@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import AuthService from '@/services/AuthService'
 
-let api_endpoint = process.env.VUE_APP_POKEMON_ENDPOINT || "http://localhost:1337"
+const api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhost:1337"
 
 Vue.use(Vuex)
 
@@ -28,20 +28,14 @@ export default new Vuex.Store({
         },
     },
 
-    actions: {
-
-        // addReward({ commit }, payload) {
-        //     commit("add", {payload})
-        // },
+    actions: {  
         
         async fetchReward ({ commit }) {
-            // let url = `${api_endpoint}/rewards` 
             let res = await Axios.get(`${api_endpoint}/rewards`)
             //(api_endpoint + "/rewards") 
 
             commit('fetch', { res })
-        }
-    },
+        },
 
         async addReward({ commit }, payload) {
             console.log("payload",payload)
@@ -51,7 +45,7 @@ export default new Vuex.Store({
                 menu: payload.menu,
                 diamonds: payload.diamonds
             }
-            
+            // commit("add", payload)
             try {
                 let headers = AuthService.getApiHeader()
                 let res = await Axios.post(url, body, headers)
@@ -88,10 +82,14 @@ export default new Vuex.Store({
 
         },
 
-        async editReward({ commit }, payload) {
-            //edit
-        },
+        // async editReward({ commit }, payload) {
+        //     //edit
+        // },
 
+
+        
+    },
+    
 
     modules: {},
 })

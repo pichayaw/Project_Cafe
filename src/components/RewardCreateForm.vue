@@ -4,23 +4,23 @@
         <h2>Add New Reward</h2>
         
         <br>
-        <div>
+        <form @submit.prevent="addReward">
             <div>
                 <label for="menu">Menu</label>
                 <br>
-                <input type="text" v-model="form.menu">
+                <input v-model="form.menu" type="text">
             </div>
             <br>
             <div>
                 <label for="diamonds">Diamonds </label>
                 <br>
-                <input type="number" v-model="form.diamonds">
+                <input v-model="form.diamonds" type="number">
             </div>
             <br>
             <div>
-                <button @click="addReward" >ADD</button>
+                <button type="submit" >ADD</button>
             </div>
-        </div>
+        </form>
     </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
         async addReward() {
             let payload = {
                 menu: this.form.menu,
-                diamonds: this.form.diamonds
+                diamonds: this.form.diamonds //parseInt(this.form.diamonds, 10)
             }
 
             console.log(payload)
