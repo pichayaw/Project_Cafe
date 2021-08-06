@@ -26,7 +26,7 @@
         <p>
           3 <br />
           Earn Diamonds, get Rewards <br />
-          <a href="">log in</a>
+          <a href="http://localhost:8080/login">log in</a>
         </p>
         <!--เชื่อม link เข้าสู่ระบบผู้ใช้-->
       </div>

@@ -12,6 +12,8 @@
       <h5 v-if="!isAuthen()" >|</h5>
       <router-link to="/login" v-if="!isAuthen()">LOGIN</router-link>
       <h5 v-if="isAuthen()" >|</h5>
+      <router-link to="/topup" v-if="isAuthen()">TOPUP</router-link>
+      <h5 v-if="isAuthen()" >|</h5>
       <router-link to="/logout" v-if="isAuthen()">LOGOUT</router-link>
     </div>
     <router-view />

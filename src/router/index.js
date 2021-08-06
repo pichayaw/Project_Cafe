@@ -4,6 +4,8 @@ import Menu from '@/views/Menu.vue'
 import BeforeRewards from '@/views/reward/BeforeRewards.vue'
 import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
+import Topup from '@/views/Topup'
+
 
 Vue.use(VueRouter)
 
@@ -29,6 +31,13 @@ const routes = [
     name: 'logout',
     component: Logout
   },
+ 
+  {
+    path: '/topup',
+    name: 'topup',
+    component: Topup
+  },
+
 ]
 
 const router = new VueRouter({
