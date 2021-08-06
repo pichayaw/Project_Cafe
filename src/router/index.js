@@ -4,9 +4,12 @@ import Menu from '@/views/Menu.vue'
 import BeforeRewards from '@/views/reward/BeforeRewards.vue'
 import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
+import Topup from '@/views/Topup'
+
 import AdminReward from '@/views/admin/AdminReward'
 import AdminCreateReward from '@/views/admin/CreateReward'
 import AdminEditReward from '@/views/admin/EditReward'
+import Register from '@/views/auth/Register'
 
 Vue.use(VueRouter)
 
@@ -49,6 +52,18 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout
+  },
+ 
+  {
+    path: '/topup',
+    name: 'topup',
+    component: Topup
+  },
+
+  {
+    path: '/rewards/register',
+    name: 'Register',
+    component: Register
   },
 ]
 
