@@ -6,6 +6,9 @@ import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
 import Topup from '@/views/Topup'
 
+import AdminReward from '@/views/admin/AdminReward'
+import AdminCreateReward from '@/views/admin/CreateReward'
+import AdminEditReward from '@/views/admin/EditReward'
 
 Vue.use(VueRouter)
 
@@ -19,6 +22,24 @@ const routes = [
     path: '/rewards',
     name: 'Rewards',
     component: BeforeRewards
+  },
+
+  {
+    path: '/admin/rewards',
+    name: 'AdminReward',
+    component: AdminReward
+  },
+
+  {
+    path: '/admin/create',
+    name: 'AdminCreateReward',
+    component: AdminCreateReward
+  },
+
+  {
+    path: '/admin/:id/edit',
+    name: 'AdminEditReward',
+    component: AdminEditReward
   },
   
   {

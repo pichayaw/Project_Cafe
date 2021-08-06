@@ -1,0 +1,59 @@
+{
+  "_args": [
+    [
+      "strapi-plugin-i18n@3.6.5",
+      "C:\\laragon\\www\\project_cafe\\Project_Cafe\\customer-api"
+    ]
+  ],
+  "_from": "strapi-plugin-i18n@3.6.5",
+  "_id": "strapi-plugin-i18n@3.6.5",
+  "_inBundle": false,
+  "_integrity": "sha512-AzSCfMNovZQ6ykgzdFB8zVgZQjFZdSMfStb1gOfRvNCzdnFTafujL+gSuJIHht6JpCOVcstaPG+IaLDyqVnRJQ==",
+  "_location": "/strapi-plugin-i18n",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "strapi-plugin-i18n@3.6.5",
+    "name": "strapi-plugin-i18n",
+    "escapedName": "strapi-plugin-i18n",
+    "rawSpec": "3.6.5",
+    "saveSpec": null,
+    "fetchSpec": "3.6.5"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-i18n/-/strapi-plugin-i18n-3.6.5.tgz",
+  "_spec": "3.6.5",
+  "_where": "C:\\laragon\\www\\project_cafe\\Project_Cafe\\customer-api",
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "dependencies": {
+    "lodash": "4.17.20",
+    "p-map": "4.0.0",
+    "pluralize": "8.0.0",
+    "strapi-utils": "3.6.5"
+  },
+  "description": "This plugin enables to create, to read and to update content in different languages, both from the Admin Panel and from the API",
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": ">=6.0.0"
+  },
+  "gitHead": "6f7e0c27e72aacd2824471f7d931d850f36524c6",
+  "license": "SEE LICENSE IN LICENSE",
+  "maintainers": [
+    {
+      "name": "A Strapi developer"
+    }
+  ],
+  "name": "strapi-plugin-i18n",
+  "strapi": {
+    "name": "Internationalization",
+    "icon": "round-language",
+    "description": "i18n.plugin.description",
+    "required": false
+  },
+  "version": "3.6.5"
+}
