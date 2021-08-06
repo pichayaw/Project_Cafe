@@ -98,10 +98,19 @@ export default new Vuex.Store({
                 console.log(payload.id)
                 console.log("commit('edit')", payload.index, res.data)
                 commit("edit", payload.index, res.data)
+                return {
+                    success: true,
+                    data: res.data
+                  }
               } 
               else {
                 console.log(payload.id)
                 console.log(err)
+                console.error(res)
+                    return {
+                      success: false,
+                      message: "Unknown status code: " + res.status
+                    }
               }
 
         },

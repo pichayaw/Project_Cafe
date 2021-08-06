@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Edit Reward {{ id }}</h1>
+        <h1>Edit Reward</h1>
 
         <div>
             <label for="menu">Menu</label>
@@ -58,7 +58,14 @@ export default {
             }
 
             console.log(payload)
-            await RewardApiStore.dispatch("editReward", payload)
+            let res = await RewardApiStore.dispatch("editReward", payload)
+            console.log(res)
+            if (res.success) {
+                this.$router.push("/admin/rewards")
+            }
+            else {
+                this.$swal("Add Failed", res.message, "error")
+            }
         },
 
         exit() {
