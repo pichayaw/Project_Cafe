@@ -9,6 +9,7 @@ import Topup from '@/views/Topup'
 import AdminReward from '@/views/admin/AdminReward'
 import AdminCreateReward from '@/views/admin/CreateReward'
 import AdminEditReward from '@/views/admin/EditReward'
+import Register from '@/views/auth/Register'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,11 @@ const routes = [
     component: Topup
   },
 
+  {
+    path: '/rewards/register',
+    name: 'Register',
+    component: Register
+  },
 ]
 
 const router = new VueRouter({
