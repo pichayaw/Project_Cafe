@@ -25,7 +25,6 @@ export default {
     {
         this.user = await AuthUser.getters.user
         console.log(this.user);
-        
     },
 
 

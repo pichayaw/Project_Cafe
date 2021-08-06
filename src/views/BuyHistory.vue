@@ -2,7 +2,7 @@
   <div>
       <h1>this is page history user</h1>
       <div>
-          {{user.money}}
+          {{user.product_histories}}
       </div>
       
   </div>
@@ -22,7 +22,7 @@ export default {
     async created()
     {
         this.user = await AuthUser.getters.user
-        
+        console.log(this.user);
     },
 }
 </script>

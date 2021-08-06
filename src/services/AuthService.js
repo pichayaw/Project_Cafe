@@ -156,15 +156,14 @@ export default
     async refresh()
     {
         let header = this.getApiHeader()
-        let res = await Axios.get(api_endpoint + "/users/me" , header)
+        let res = await Axios.get(api_endpoint + "/users/"+user.id , header)
         return res.data
     },
 
     async buyHistory()
     {
         let header = this.getApiHeader()
-        
-        let res = await Axios.get(api_endpoint + "/users/me" , header)
+        let res = await Axios.get(api_endpoint + "/users/"+user.id , header)
         return res.data
     }
 
