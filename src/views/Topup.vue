@@ -26,6 +26,7 @@ export default {
         this.user = await AuthUser.getters.user
     },
 
+
     mounted()
     {
         if (!this.isAuthen()) {

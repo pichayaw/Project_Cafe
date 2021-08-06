@@ -7,6 +7,7 @@ let api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhos
 
 Vue.use(Vuex)
 
+
 export default new Vuex.Store({
     state: {  
         data: [],
@@ -31,7 +32,9 @@ export default new Vuex.Store({
     actions: {  
         
         async fetchReward ({ commit }) {
-            let res = await Axios.get(`${api_endpoint}/rewards`)
+            let url = `${api_endpoint}/rewards`
+            let headers = AuthService.getApiHeader()
+            let res = await Axios.get(url, headers)
             //(api_endpoint + "/rewards") 
 
             commit('fetch', { res })

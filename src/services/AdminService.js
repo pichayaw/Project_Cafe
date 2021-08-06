@@ -5,7 +5,9 @@ const api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localh
 export default {
     async getRewardById (id) {
         try {
-            let res = await Axios.get(`${api_endpoint}/rewards/${id}`)
+            let headers = AuthService.getApiHeader()
+            let url = `${api_endpoint}/rewards/${id}`
+            let res = await Axios.get(url, headers)
             return res.data
         } catch (e) {
 
