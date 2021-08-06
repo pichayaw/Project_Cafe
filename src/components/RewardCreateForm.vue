@@ -20,6 +20,7 @@
             <br>
             <div>
                 <button @click="addReward" >ADD</button>
+                 <button @click="exit">Exit</button>
             </div>
         </div>
     </div>
@@ -62,6 +63,10 @@ export default {
             else {
                 this.$swal("Add Failed", res.message, "error")
             }
+        },
+
+        exit() {
+            this.$router.push('/admin/rewards')
         }
     }
 

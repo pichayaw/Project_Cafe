@@ -6,6 +6,7 @@ let api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhos
 Vue.use(Vuex)
 
 
+
 export default new Vuex.Store({
   state: {
     data: [],

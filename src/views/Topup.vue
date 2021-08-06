@@ -28,6 +28,7 @@ export default {
         
     },
 
+
     mounted()
     {
         if (!this.isAuthen()) {

@@ -19,6 +19,7 @@
                             Edit
                         </router-link>
                     </td>
+                    
 
                 </tr>
             </tbody>
@@ -57,7 +58,9 @@ export default {
             await RewardApiStore.dispatch('fetchReward')
             this.rewards = RewardApiStore.getters.rewards
             console.log(this.form)
-        }
+        },
+
+        
 
     }
 

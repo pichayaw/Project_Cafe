@@ -49,12 +49,14 @@ export default
     {
         // call api post/auth/local
         try{
-            let url = api_endpoint + "/auth/local"
+            let url = api_endpoint + "/auth/local" 
             let body = {
                 identifier: email ,
                 password: password
             }
+            console.log(1)
             let res = await Axios.post(url , body)
+            console.log(2)
             if (res.status === 200)
             {
                 //console.log(res.data)

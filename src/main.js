@@ -10,7 +10,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { ImagePlugin } from 'bootstrap-vue'
 import VueSwal from 'vue-swal'
 Vue.use(ImagePlugin)
-Vue.use(Axios,VueAxios)
+// Vue.use(Axios,VueAxios)
+Vue.use(VueAxios, Axios)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
