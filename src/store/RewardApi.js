@@ -91,9 +91,11 @@ export default new Vuex.Store({
                 diamonds: payload.diamonds
             }
 
+            console.log('body', payload)
             let res = await Axios.put(url, body)
-            console.log(payload.id)
+            
             if (res.status === 200) {
+                console.log(payload.id)
                 console.log("commit('edit')", payload.index, res.data)
                 commit("edit", payload.index, res.data)
               } 

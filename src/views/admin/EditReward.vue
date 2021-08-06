@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Edit Reward</h1>
+        <h1>Edit Reward {{ id }}</h1>
 
         <div>
             <label for="menu">Menu</label>
@@ -40,7 +40,7 @@ export default {
     async created() {
         this.id = this.$route.params.id
         let reward = await AdminService.getRewardById(this.id)
-        console.log(reward)
+        console.log("reward",reward)
         this.form.menu = reward.menu
         this.form.diamonds = reward.diamonds
     },
@@ -53,8 +53,8 @@ export default {
         async editReward() {
             let payload = {
                 id: this.id,
-                menu: this.menu,
-                diamonds: this.diamonds
+                menu: this.form.menu,
+                diamonds: this.form.diamonds
             }
 
             console.log(payload)
