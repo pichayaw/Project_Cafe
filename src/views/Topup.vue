@@ -34,7 +34,7 @@ export default {
     mounted()
     {
         if (!this.isAuthen()) {
-            this.$swal("ห้ามเข้า", `ไป login ซะ`, "warning");
+            this.$swal("Can not open this page", `please login`, "warning");
             this.$router.push("/");
         }
     },

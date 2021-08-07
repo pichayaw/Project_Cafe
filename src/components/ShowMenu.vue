@@ -2,6 +2,7 @@
   <div>
     <div class="menu">
 
+
       <div>
           <b-carousel
             id="carousel-1"
@@ -182,6 +183,7 @@
 <script>
 import MenuApiStore from "@/store/Menu"
 import FoodApiStore from "@/store/Food"
+import AuthUser from '@/store/AuthUser'
 
 export default{
 
@@ -241,8 +243,7 @@ export default{
     .df{
       margin: 20px;
     }
-    
   }
-
+  
 }
 </style>
