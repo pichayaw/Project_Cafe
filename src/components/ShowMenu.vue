@@ -175,10 +175,6 @@
         <img class="df" src="@/assets/food6.jpg" alt="food6">
         <img class="df" src="@/assets/food5.jpg" alt="food5">
       </div>
-    
-
-
-   
     </div>
   </div>
 </template>
@@ -206,12 +202,12 @@ export default{
       async fetchInfo(){
         await MenuApiStore.dispatch("fetchMenu")
         this.beverage = MenuApiStore.getters.menu
-        console.log(this.beverage);
+        // console.log(this.beverage);
       },
       async fetchFood(){
         await FoodApiStore.dispatch("fetchFood")
         this.food = FoodApiStore.getters.food
-        console.log(this.food);
+        // console.log(this.food);
       }
       
   }

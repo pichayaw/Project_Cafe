@@ -29,13 +29,13 @@ export default
 
     getJwt ()
     {
-        return JSON.parse(localStorage.getItem('auth-cafe')).jwt
+        return JSON.parse(localStorage.getItem('auth_cafe')).jwt
     },
 
     getApiHeader()
     {
         //ใช้สำหรับเข้าถึง api ตาม role ex. user,addmin -> delete,add data
-        let jwt = JSON.parse(localStorage.getItem('auth-cafe')).jwt
+        let jwt = JSON.parse(localStorage.getItem('auth_cafe')).jwt
         if (jwt !== ''){
             return{
                 headers:{
@@ -49,12 +49,14 @@ export default
     {
         // call api post/auth/local
         try{
-            let url = api_endpoint + "/auth/local"
+            let url = api_endpoint + "/auth/local" 
             let body = {
                 identifier: email ,
                 password: password
             }
+            console.log(1)
             let res = await Axios.post(url , body)
+            console.log(2)
             if (res.status === 200)
             {
                 //console.log(res.data)
@@ -132,7 +134,7 @@ export default
 
     async topup(money)
     {
-        //console.log(this.jwt);
+        console.log(this.jwt);
         let header = this.getApiHeader()
         console.log(header);
         //let id = this.user.id
@@ -154,15 +156,14 @@ export default
     async refresh()
     {
         let header = this.getApiHeader()
-        let res = await Axios.get(api_endpoint + "/users/me" , header)
+        let res = await Axios.get(api_endpoint + "/users/"+user.id , header)
         return res.data
     },
 
     async buyHistory()
     {
         let header = this.getApiHeader()
-        
-        let res = await Axios.get(api_endpoint + "/users/me" , header)
+        let res = await Axios.get(api_endpoint + "/users/"+user.id , header)
         return res.data
     }
 

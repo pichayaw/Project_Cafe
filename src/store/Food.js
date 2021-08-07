@@ -6,6 +6,7 @@ let api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhos
 Vue.use(Vuex)
 
 
+
 export default new Vuex.Store({
   state: {
     data: [],
@@ -20,7 +21,7 @@ export default new Vuex.Store({
     fetch(state , res)
     {
       state.data = res.data
-      console.log(state.data);
+      // console.log(state.data);
     }
   },
 
@@ -28,7 +29,7 @@ export default new Vuex.Store({
     async fetchFood({commit})
     {
       let res = await Axios.get(api_endpoint + "/foods")
-      console.log(res.data);
+      // console.log(res.data);
       commit("fetch" , res)
     }
   },

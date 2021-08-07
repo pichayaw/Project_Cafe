@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import RewardsApiStore from "@/store/Rewards"
+import RewardsApiStore from "../store/Rewards"
 export default{
   data(){
     return{

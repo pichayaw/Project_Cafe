@@ -8,13 +8,17 @@
       </p>
       <router-link to="/">MENU</router-link>
       <h5>|</h5>
+      <router-link v-if="isAuthen()" to="/shop" >SHOP</router-link>
+      <h5 v-if="isAuthen()" >|</h5>
       <router-link to="/rewards" >REWARDS</router-link>
       <h5 v-if="isAuthen()" >|</h5>
-      <router-link v-if="isAuthen()" to="/admin/rewards" >ADMIN REWARDS</router-link>
+      <router-link v-if="isAuthen() && isAdmin()" to="/admin/rewards" >ADMIN REWARDS</router-link>
       <h5 v-if="!isAuthen()" >|</h5>
       <router-link to="/login" v-if="!isAuthen()">LOGIN</router-link>
-      <h5 v-if="isAuthen()" >|</h5>
+      <h5 v-if="isAuthen()&& isAdmin()" >|</h5>
       <router-link to="/topup" v-if="isAuthen()">TOPUP</router-link>
+      <h5 v-if="isAuthen()" >|</h5>
+      <router-link to="/buyhistory" v-if="isAuthen()">HISTORY</router-link>
       <h5 v-if="isAuthen()" >|</h5>
       <router-link to="/logout" v-if="isAuthen()">LOGOUT</router-link>
     </div>
@@ -29,6 +33,10 @@ export default {
     isAuthen() {
       return AuthUser.getters.isAuthen;
     },
+    isAdmin()
+    {
+      return AuthUser.getters.id === 2
+    }
   },
 };
 </script>

@@ -1,12 +1,15 @@
 <template>
-  <div>
-      <h1>this topup page</h1>
-      <div>
-          {{user.money}}
+  <div class="topup">
+    <img src="@/assets/top.jpg" alt="food1">
+      <div class="balance">
+          <h2> Balance : {{user.money}} Baht</h2>
       </div>
-      <div>
-          <input type="number" placeholder="กรอกเงินด้วยถ้าอยากซื้อ" autocomplete="off" v-model="money">
-          <button @click="plusMoney">เติมเงิน</button>
+      <h3> Top Up</h3>
+
+      <div class="amount">
+          <input type="number" placeholder="please enter amount" autocomplete="off" v-model="money">
+          &nbsp;<b-button variant="primary"  class="mb-2" @click="plusMoney">
+              <b-icon icon="check2-circle" aria-hidden="true"></b-icon> Confirm</b-button>
       </div>
   </div>
 </template>
@@ -24,7 +27,9 @@ export default {
     async created()
     {
         this.user = await AuthUser.getters.user
+        console.log(this.user);
     },
+
 
     mounted()
     {
@@ -37,6 +42,7 @@ export default {
     methods: {
         async plusMoney()
         {
+            console.log("this1")
             let res = await AuthUser.dispatch("topup" , this.money)
             console.log("this" ,res)
             if(res)
@@ -55,6 +61,36 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.topup{
+    color: #737f8b ;
+    img{
+        width: 100vw;
+        height: 250px;
+    }
+    h3 {
+    border-bottom: 2px solid gray;
+    margin: 0 40px 10px 40px;
+    padding: 30px 0 20px 0;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 3em;
+    font-variant: small-caps;
+    text-shadow: 5px 5px rgb(185, 183, 181);
+  }
+}
+.balance{
+    padding-top: 30px;
+    border: solid#BCAAA4;
+    height: 120px;
+    background-color:#BCAAA4;
+    color: white;  
+}
+.amount{
+    padding-top: 30px;
+    border: solid#A1887F  ;
+    height: 100px;
+    background-color:#A1887F  ;
+}
 
 </style>

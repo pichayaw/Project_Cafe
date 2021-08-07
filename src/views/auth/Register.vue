@@ -19,20 +19,20 @@
             <b-card-text>
                 <div class="user">
                 <label for="username">Username</label>
-                <input v-model="form.username" type="text" autocomplete="off" placeholder="username">
+                &nbsp;<input v-model="form.username" type="text" autocomplete="off" placeholder="Username">
             </div>
             <div class="email">
                 <label for="email">Email</label>
-                <input v-model="form.email" type="text" autocomplete="off" placeholder="email">
+                &nbsp;<input v-model="form.email" type="text" autocomplete="off" placeholder="Email">
             </div>
             <div class="pass">
                 <label for="password">Password</label>
-                <input v-model="form.password" type="password">
+                &nbsp;<input v-model="form.password" type="password" placeholder="Password">
             </div>
             </b-card-text>
 
             <div class="submit">
-                <b-button href="#" variant="primary" type="submit" @click="register">Register</b-button>
+                <b-button variant="primary" type="submit" @click="register">Register</b-button>
             </div>
         </b-card>
         </div>
