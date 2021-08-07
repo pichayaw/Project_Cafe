@@ -1,15 +1,15 @@
 <template>
     <div>
-        <reward-create-form></reward-create-form>
+        <show-leaderboard></show-leaderboard>
     </div>
 </template>
 
 <script>
-import RewardCreateForm from '@/components/RewardCreateForm.vue'
-import AuthUser from "@/store/AuthUser"
+import ShowLeaderboard from '@/components/ShowLeaderboard'
+import AuthUser from "@/store/AuthUser";
 export default {
     components: { 
-        RewardCreateForm 
+        ShowLeaderboard
     },
 
     mounted() {
@@ -20,7 +20,6 @@ export default {
         }
         
     }
-
 
 }
 </script>
