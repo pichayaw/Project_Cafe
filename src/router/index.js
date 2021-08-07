@@ -5,11 +5,12 @@ import BeforeRewards from '@/views/reward/BeforeRewards.vue'
 import Login from '@/views/auth/Login'
 import Logout from '@/views/auth/Logout'
 import Topup from '@/views/Topup'
-
+import BuyHistory from "@/views/BuyHistory"
 import AdminReward from '@/views/admin/AdminReward'
 import AdminCreateReward from '@/views/admin/CreateReward'
 import AdminEditReward from '@/views/admin/EditReward'
 import Register from '@/views/auth/Register'
+import Shop from '@/views/Shop'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,18 @@ const routes = [
     name: 'topup',
     component: Topup
   },
+
+  {
+    path: '/buyhistory',
+    name: 'buyhistory',
+    component: BuyHistory
+  },
+  {
+    path: '/shop',
+    name: 'shop',
+    component: Shop
+  },
+
 
   {
     path: '/rewards/register',

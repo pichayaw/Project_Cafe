@@ -24,6 +24,7 @@ export default {
     async created()
     {
         this.user = await AuthUser.getters.user
+        console.log(this.user);
     },
 
 
@@ -38,6 +39,7 @@ export default {
     methods: {
         async plusMoney()
         {
+            console.log("this1")
             let res = await AuthUser.dispatch("topup" , this.money)
             console.log("this" ,res)
             if(res)
