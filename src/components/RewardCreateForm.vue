@@ -19,6 +19,12 @@
             </div>
             <br>
             <div>
+                <label for="Stock">Stocks </label>
+                <br>
+                <input v-model="form.Stock" type="number">
+            </div>
+            <br>
+            <div>
                 <button @click="addReward" >ADD</button>
                  <button @click="exit">Exit</button>
             </div>
@@ -34,7 +40,8 @@ export default {
         return {
             form : {
                 menu: '',
-                diamonds: ''
+                diamonds: '',
+                Stock: ''
             }
         }
     },
@@ -42,15 +49,16 @@ export default {
     methods: {
         clearForm() {
             this.form = {
-                name: "",
-                name_jp: "",
-                pokemon_types: ""
+                menu: '',
+                diamonds: '',
+                Stock: ''
             }
         },
         async addReward() {
             let payload = {
                 menu: this.form.menu,
-                diamonds: this.form.diamonds //parseInt(this.form.diamonds, 10)
+                diamonds: this.form.diamonds, //parseInt(this.form.diamonds, 10)
+                Stock: this.form.Stock
             }
 
             console.log(payload)

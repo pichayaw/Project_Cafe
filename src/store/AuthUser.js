@@ -96,6 +96,22 @@ export default new Vuex.Store({
           }
       },
 
+      async minusPoint({commit} , point)
+      {
+          let res = await AuthService.minusPoint(money)
+          console.log("this is topup" ,res.res);
+          
+          if(res.status === "success")
+          {
+            commit('update' , res.res)
+            return res ;
+          }  
+          else
+          {
+            console.error(res.message)
+          }
+      },
+
       
       
       async register({ commit },{ username, email, password })

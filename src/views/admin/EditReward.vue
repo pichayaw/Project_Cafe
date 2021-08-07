@@ -11,6 +11,11 @@
             <label for="diamonds">Diamonds</label>
             <input v-model="form.diamonds" type="number">
         </div>
+            <label for="Stock">Stocks</label>
+            <input v-model="form.Stock" type="number">
+        <div>
+
+        </div>
 
         <div>
             <button @click="editReward">Update</button>
@@ -36,7 +41,8 @@ export default {
             id: '',
             form: {
                 menu: '',
-                diamonds: ''
+                diamonds: '',
+                Stock: ''
             }
         }
     },
@@ -47,6 +53,7 @@ export default {
         console.log("reward",reward)
         this.form.menu = reward.menu
         this.form.diamonds = reward.diamonds
+        this.form.Stock = reward.Stock
     },
 
     methods: {
@@ -58,7 +65,8 @@ export default {
             let payload = {
                 id: this.id,
                 menu: this.form.menu,
-                diamonds: this.form.diamonds
+                diamonds: this.form.diamonds,
+                Stock: this.form.Stock
             }
 
             console.log(payload)
@@ -68,19 +76,29 @@ export default {
                 this.$router.push("/admin/rewards")
             }
             else {
-                this.$swal("Add Failed", res.message, "error")
+                this.$swal("Edit Failed", res.message, "error")
             }
         },
 
         exit() {
-            this.$router.push('/admin/rewards')
+            console.log("diamonds form : ", this.form.diamonds)
+            
+            if (this.form.diamonds >= 0 || this.form.Stock >= 0) {
+                this.$router.push('/admin/rewards')
+            }
+            else {
+                this.$swal("Edit Failed", `Cannot edit Diamonds or Stocks less than 0 , Diamonds : ${this.form.diamonds} & Stocks : ${this.form.Stock} `, "error")
+                
+            }
+            
         },
 
         async deleteReward() {
             let payload = {
                 id: this.id,
                 menu: this.form.menu,
-                diamonds: this.form.diamonds
+                diamonds: this.form.diamonds,
+                Stock: this.form.Stock
             }
 
             console.log("TEST",payload)
@@ -90,7 +108,7 @@ export default {
                 this.$router.push("/admin/rewards")
             }
             else {
-                this.$swal("Add Failed", res.message, "error")
+                this.$swal("Delete Failed", res.message, "error")
             }
         },
 
