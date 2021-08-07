@@ -2,10 +2,6 @@
     <div class="edit">
         <div class="head">
             <h1><br> Edit Reward</h1><br>
-        </div>
-            <label for="Stock">Stocks</label>
-            <input v-model="form.Stock" type="number">
-        <div>
 
         </div>
 
@@ -47,9 +43,6 @@
             </b-card>
         </div>
 
-        <div>
-            <button @click="deleteReward">DELETE</button>
-        </div>
 
 
     </div>

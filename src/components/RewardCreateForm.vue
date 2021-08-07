@@ -31,21 +31,10 @@
             <br>
         </b-card-text>
             <div>
-<<<<<<< HEAD
-                <label for="Stock">Stocks </label>
-                <br>
-                <input v-model="form.Stock" type="number">
-            </div>
-            <br>
-            <div>
-                <button @click="addReward" >ADD</button>
-                 <button @click="exit">Exit</button>
-=======
                 <b-button variant="primary"  class="mb-2" @click="addReward" >
                     <b-icon icon="bag-plus-fill" aria-hidden="true"></b-icon> Add</b-button>
                 &nbsp;&nbsp;<b-button variant="outline-primary" class="mb-2" @click="exit">
                     <b-icon icon="arrow-counterclockwise" aria-hidden="true"></b-icon> Exit</b-button>
->>>>>>> register
             </div>
         </b-card>
         </div>
