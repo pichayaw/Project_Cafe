@@ -1,8 +1,6 @@
 <template>
   <div>
     <div class="menu">
-
-
       <div>
           <b-carousel
             id="carousel-1"
@@ -54,6 +52,7 @@
 
         </b-carousel>
       </div>
+
       <!-- <div class="ontop">
         
         <b-carousel
@@ -183,7 +182,6 @@
 <script>
 import MenuApiStore from "@/store/Menu"
 import FoodApiStore from "@/store/Food"
-import AuthUser from '@/store/AuthUser'
 
 export default{
 
