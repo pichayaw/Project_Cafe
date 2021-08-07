@@ -10,19 +10,19 @@
       <h5>|</h5>
       <router-link v-if="isAuthen()" to="/shop" >SHOP</router-link>
       <h5 v-if="isAuthen()" >|</h5>
-      <router-link to="/rewards" >REWARDS</router-link>
+      <router-link  to="/rewards" >REWARDS</router-link>
       <h5 v-if="isAuthen()" >|</h5>
       <router-link v-if="isAuthen() && isAdmin()" to="/admin/rewards" >ADMIN REWARDS</router-link>
-      <h5 v-if="!isAuthen()" >|</h5>
       <h5 v-if="isAuthen() && isAdmin()" >|</h5>
-      <router-link v-if="isAuthen() && isAdmin()" to="/admin/rewards" >ADMIN LEADERBOARD</router-link>
+      
+      <router-link v-if="isAuthen() && isAdmin()" to="/admin/leaderboard" >ADMIN LEADERBOARD</router-link>
       <h5 v-if="!isAuthen()" >|</h5>
       <router-link to="/rewards/register" v-if="!isAuthen()">REGISTER</router-link>
       <h5 v-if="!isAuthen()" >|</h5>
       
       <router-link to="/login" v-if="!isAuthen()">LOGIN</router-link>
-      <h5 v-if="isAuthen() && !isAdmin()" >|</h5>
       <h5 v-if="isAuthen() && isAdmin()" >|</h5>
+      
       <router-link v-if="isAuthen() && !isAdmin()" to="/topup">TOPUP</router-link>
       <h5 v-if="isAuthen() && !isAdmin()" >|</h5>
       <router-link v-if="isAuthen() && !isAdmin()" to="/buyhistory" >HISTORY</router-link>
