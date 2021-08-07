@@ -12,7 +12,9 @@
       <h5 v-if="isAuthen()" >|</h5>
       <router-link to="/rewards" >REWARDS</router-link>
       <h5 v-if="isAuthen()" >|</h5>
-      <router-link v-if="isAuthen() && isAdmin()" to="/admin/rewards" >ADMIN REWARDS</router-link>
+      <router-link v-if="isAuthen() && isAdmin()" to="/admin/rewards" >ADMIN REWARDS</router-link> 
+      <h5 v-if="isAuthen()&& isAdmin()" >|</h5>
+      <router-link v-if="isAuthen() && isAdmin()" to="/admin/leaderboard" >ADMIN LEADERBOARD</router-link> 
       <h5 v-if="!isAuthen()" >|</h5>
       <router-link to="/login" v-if="!isAuthen()">LOGIN</router-link>
       <h5 v-if="isAuthen()&& isAdmin()" >|</h5>
