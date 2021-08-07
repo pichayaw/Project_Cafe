@@ -16,27 +16,27 @@
           class="mb-2"
         >
         <b-card-text>
-          <div>
+          <br><div>
             <label for="email">email</label>
-            <input
+            &nbsp;<input
               v-model="from.email"
               type="text"
-              placeholder="email"
+              placeholder="Email"
               autocomplete="off"
             />
           </div>
-          <div>
+          <br><div>
             <label for="password">Password</label>
-            <input
+            &nbsp;<input
               v-model="from.password"
               type="password"
-              placeholder="password"
+              placeholder="Password"
               autocomplete="off"
             />
           </div>
         </b-card-text>
-          <div>
-            <button type="submit">Login</button>
+          <br><div>
+              <b-button variant="primary" type="submit">Login</b-button>
           </div>
         </b-card>
       </div>

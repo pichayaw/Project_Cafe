@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <table>
+    <div class="container">
+        <table class="table table-striped table-hover" sticky-header="400px">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>No.</th>
                     <th>Menu</th>
                     <th>Diamonds</th>
                     <th>Stocks</th>
@@ -18,7 +18,7 @@
                     <td>{{ rewa.Stock }}</td>
                     <td v-if="isAuthen()">
                         <router-link :to="{name: 'AdminEditReward', params: {id: rewa.id}}">
-                            Edit
+                            <b-button pill variant="outline-danger">Edit</b-button>
                         </router-link>
                     </td>
                     

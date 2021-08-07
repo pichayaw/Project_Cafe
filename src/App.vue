@@ -20,7 +20,7 @@
       <h5 v-if="isAuthen()&& isAdmin()" >|</h5>
       <router-link to="/topup" v-if="isAuthen()">TOPUP</router-link>
       <h5 v-if="isAuthen()" >|</h5>
-      <router-link to="/buyhistory" v-if="isAuthen()">HISTOLY</router-link>
+      <router-link to="/buyhistory" v-if="isAuthen()">HISTORY</router-link>
       <h5 v-if="isAuthen()" >|</h5>
       <router-link to="/logout" v-if="isAuthen()">LOGOUT</router-link>
     </div>

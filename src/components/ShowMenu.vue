@@ -175,10 +175,6 @@
         <img class="df" src="@/assets/food6.jpg" alt="food6">
         <img class="df" src="@/assets/food5.jpg" alt="food5">
       </div>
-    
-
-
-   
     </div>
   </div>
 </template>
