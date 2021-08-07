@@ -68,12 +68,21 @@ export default {
                 this.$router.push("/admin/rewards")
             }
             else {
-                this.$swal("Add Failed", res.message, "error")
+                this.$swal("Edit Failed", res.message, "error")
             }
         },
 
         exit() {
-            this.$router.push('/admin/rewards')
+            console.log("diamonds form : ", this.form.diamonds)
+            
+            if (this.form.diamonds > 0) {
+                this.$router.push('/admin/rewards')
+            }
+            else {
+                this.$swal("Edit Failed", `Cannot edit Diamonds less than 0 , Diamonds (${this.form.diamonds})`, "error")
+                
+            }
+            
         },
 
         async deleteReward() {
@@ -90,7 +99,7 @@ export default {
                 this.$router.push("/admin/rewards")
             }
             else {
-                this.$swal("Add Failed", res.message, "error")
+                this.$swal("Delete Failed", res.message, "error")
             }
         },
 

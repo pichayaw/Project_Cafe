@@ -99,7 +99,7 @@ export default new Vuex.Store({
                 let headers = AuthService.getApiHeader()
                 let res = await Axios.put(url, body, headers)
 
-                if (res.status === 200) {
+                if (res.status === 200 && payload.diamonds > 0) {
                     console.log(payload.id)
                     console.log("commit('edit')", payload.index, res.data)
                     commit("edit", payload.index, res.data)
@@ -111,7 +111,7 @@ export default new Vuex.Store({
                   else {
                         return {
                           success: false,
-                          message: "Unknown status code: " + res.status
+                          message: "Diamonds ค่าน้อยกว่า 1 ไม่ได้"
                         }
                   }
                 
@@ -121,6 +121,7 @@ export default new Vuex.Store({
                     return {
                       success: false,
                       message: e.response.data.message,
+                      
                     }
                   }
                   else {
