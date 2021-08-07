@@ -5,12 +5,12 @@
       <div class="reward-container">
         <!-- {{reward}}  -->
         <label for=""> รูปภาพ</label><br>
-        <label for="">menu</label>
+        <label for="">menu : </label>
         <label for="">{{item.menu}}</label><br>
-        <label for="">diamond point</label>
-        <label for="">{{item.diamonds}}</label><br>
-        <label for="">จำนวน</label>
-        <label for="">{{item.stock}}</label><br>
+        <label for="">diamond point : </label>
+        <label for=""> {{item.diamonds}}</label><br>
+        <label for="">จำนวน : </label>
+        <label for="">{{item.Stock}}</label><br>
         <button @click="minusDiamondPoint(item)">แลกของ</button>
       </div>
     </div>

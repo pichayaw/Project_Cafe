@@ -46,7 +46,8 @@ export default new Vuex.Store({
 
             let body = {
                 menu: payload.menu,
-                diamonds: payload.diamonds
+                diamonds: payload.diamonds,
+                Stock: payload.Stock
             }
             // commit("add", payload)
             try {
@@ -91,7 +92,8 @@ export default new Vuex.Store({
             let url = `${api_endpoint}/rewards/${payload.id}` 
             let body = {
                 menu: payload.menu,
-                diamonds: payload.diamonds
+                diamonds: payload.diamonds,
+                Stock: payload.Stock
             }
             console.log('body', payload)
             
@@ -99,7 +101,7 @@ export default new Vuex.Store({
                 let headers = AuthService.getApiHeader()
                 let res = await Axios.put(url, body, headers)
 
-                if (res.status === 200 && payload.diamonds > 0) {
+                if (res.status === 200 && payload.diamonds >= 0) {
                     console.log(payload.id)
                     console.log("commit('edit')", payload.index, res.data)
                     commit("edit", payload.index, res.data)
