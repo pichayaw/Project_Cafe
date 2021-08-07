@@ -1,17 +1,19 @@
 <template>
   <div>
     <h1>REWARDS</h1>
-    <div v-for="item in reward" :key ="item.id">
-      <div class="reward-container">
-        <!-- {{reward}}  -->
-        <label for=""> รูปภาพ</label><br>
-        <label for="">menu</label>
-        <label for="">{{item.menu}}</label><br>
-        <label for="">diamond point</label>
-        <label for="">{{item.diamonds}}</label><br>
-        <label for="">จำนวน</label>
-        <label for="">{{item.stock}}</label><br>
-        <button @click="minusDiamondPoint(item)">แลกของ</button>
+    <div class="reward-container">
+      <div v-for="item in reward" :key ="item.id">
+        <div >
+          <!-- {{reward}}  -->
+          <label for=""> รูปภาพ</label><br>
+          <label for="">menu</label>
+          <label for=""> {{item.menu}}</label><br>
+          <label for="">diamond point</label>
+          <label for=""> {{item.diamonds}}</label><br>
+          <label for="">จำนวน</label>
+          <label for=""> {{item.Stock}}</label><br>
+          <button @click="redeem(item)">แลกของ</button>
+        </div>
       </div>
     </div>
     <div>
@@ -33,7 +35,7 @@ export default {
   async created() {
     this.fetchRewards();
     this.user = await AuthUser.getters.user;
-    console.log("sore", this.user);
+    //console.log("sore", this.user);
   },
   mounted() {
     if (!this.isAuthen()) {
@@ -48,11 +50,14 @@ export default {
       console.log(this.reward);
     },
 
-    async minusDiamondPoint(item) {
-      console.log("this" ,item.id);
-      
-      let res = await AuthUser.dispatch("minusPoint", this.user.diamond_point);
+    async redeem(item) {
+      console.log("this" ,item);
+      await AuthUser.dispatch("redeem", item);
+      this.fetchRewards()
     },
+    
+    
+    
     isAuthen() {
       return AuthUser.getters.isAuthen;
     },
@@ -61,5 +66,11 @@ export default {
 </script>
 
 <style>
-
+.reward-container
+{
+  display: grid ;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  
+}
 </style>

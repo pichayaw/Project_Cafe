@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 let auth_key = 'auth_cafe'
 let auth = JSON.parse(localStorage.getItem(auth_key))
+let api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhost:1337"
 
 // const initialState = {
 //     user : auth ? auth.user:  "",
@@ -21,8 +22,8 @@ export default new Vuex.Store({
     user : auth ? AuthService.refresh() :  "",
     jwt : auth ? auth.jwt:"",
     isAuthen: auth ? true : false,
-    id : auth ? auth.user.id : ''
-
+    id : auth ? auth.user.id : '',
+    
   },
   
   mutations: {
@@ -47,12 +48,18 @@ export default new Vuex.Store({
       // }
       async update(state , user )
       {
-        console.log("this is update " , user);
+        //console.log("this is update " , user);
         let res = await AuthService.refresh()
-        console.log("this is res",res);
+        //console.log("this is res",res);
         state.user = res
-       
-      }
+      },
+
+      async updateStock(state , stock)
+      {
+        console.log("this is stock",stock);
+      },
+
+     
   },
   actions: {
       async login ({commit} ,{ email , password})
@@ -96,14 +103,17 @@ export default new Vuex.Store({
           }
       },
 
-      async minusPoint({commit} , point)
+      async redeem({commit} , item)
       {
-          let res = await AuthService.minusPoint(money)
-          console.log("this is topup" ,res.res);
-          
+          console.log("this is redeem" , item);
+          let res = await AuthService.redeem(item)
+          console.log("this is " ,res.res);
+          console.log("this is " ,res.status);
           if(res.status === "success")
           {
-            commit('update' , res.res)
+            console.log("this is " ,res.status);
+            commit('updateStock' , res.res)
+            console.log("this is " ,res.status);
             return res ;
           }  
           else
@@ -112,8 +122,6 @@ export default new Vuex.Store({
           }
       },
 
-      
-      
       async register({ commit },{ username, email, password })
       {
         console.log(2)
@@ -124,6 +132,10 @@ export default new Vuex.Store({
         }
         return res
       }
+
+      
+
+
   },
   modules: {
   },

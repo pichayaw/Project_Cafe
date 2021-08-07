@@ -18,13 +18,13 @@ export default {
     {
         return {
             user : "" ,
-            money :null
+            money :0
         }
     },
     async created()
     {
-        this.user = await AuthUser.getters.user
-        console.log(this.user);
+        let user = await AuthUser.getters.user
+        this.user = user
     },
 
 
@@ -44,13 +44,17 @@ export default {
             console.log("this" ,res)
             if(res)
             {
+                await this.$swal("เติมเงินสำเร็จ","", "success");
                 location.reload()
             }
         },
+        
         isAuthen()
         {
             return AuthUser.getters.isAuthen
-        }
+        },
+        
+
 
     }
 

@@ -10,18 +10,7 @@ export default
     {
         return (user !== "") && (jwt !== "")
     },
-    getApiHeader() {
-        let jwt = JSON.parse(localStorage.getItem('auth_cafe')).jwt
-        console.log("this" + jwt);
-        if (this.jwt !== "") {
-          console.log(2);
-            return {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          };
-        }
-      },
+    
     getUser ()
     {
         return user
@@ -151,6 +140,47 @@ export default
         {
             return {status : "error" , message : "เงินติดลบอยู่อะ ดูดีๆ"}
         }
+    },
+
+    async redeem(item)
+    {
+        let header = this.getApiHeader()
+        console.log(header);
+        let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
+        console.log("id" ,item.id);
+        console.log(typeof idUser);
+        let res = await Axios.get(api_endpoint + "/rewards/"+item.id , header)
+        let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
+
+        console.log("res" ,res);
+        console.log("userDiamond", me.data.diamond_point)
+        // console.log("resDiamond" ,res.data.diamonds);
+        // console.log("userNAME", me.data.id)
+        // console.log("REWard" ,res.data.diamonds);
+        if (me.data.diamond_point >= res.data.diamonds && res.data.Stock > 0)
+        {
+            res.data.Stock -= 1
+            me.data.diamond_point -= res.data.diamonds 
+            let url = `${api_endpoint}/reward-histories`
+            let body ={
+               users: me.data ,
+               reward: res.data ,
+               reward_point: res.data.diamonds
+            }
+            console.log("body ",body);
+            
+            //console.log("2",eiei);
+            let updateStock = await Axios.put(api_endpoint + "/rewards/"+res.data.id , res.data , header)
+            let updatePoint = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
+            await Axios.post(url , body , header)
+            return {status: "success" , message : "แลกของสำเร็จ" , res : updateStock , me : updatePoint}
+
+        }
+        else{
+            console.log("shit555");
+            return {status : "error" , message : "แลกไม่ได้"}
+        }
+        
     },
 
     async refresh()
