@@ -17,11 +17,11 @@
       <router-link to="/rewards/register" v-if="!isAuthen()">REGISTER</router-link>
       <h5 v-if="!isAuthen()" >|</h5>
       <router-link to="/login" v-if="!isAuthen()">LOGIN</router-link>
-      <h5 v-if="isAuthen()&& isAdmin()" >|</h5>
-      <router-link to="/topup" v-if="isAuthen()">TOPUP</router-link>
-      <h5 v-if="isAuthen()" >|</h5>
-      <router-link to="/buyhistory" v-if="isAuthen()">HISTOLY</router-link>
-      <h5 v-if="isAuthen()" >|</h5>
+      <h5 v-if="!isAuthen() && !isAdmin()" >|</h5>
+      <router-link v-if="!isAdmin()" to="/topup">TOPUP</router-link>
+      <h5 v-if="isAuthen() && !isAdmin()" >|</h5>
+      <router-link v-if="isAuthen() && !isAdmin()" to="/buyhistory" >HISTORY</router-link>
+      <h5 v-if="isAuthen() && !isAdmin()" >|</h5>
       <router-link to="/logout" v-if="isAuthen()">LOGOUT</router-link>
     </div>
     <router-view />

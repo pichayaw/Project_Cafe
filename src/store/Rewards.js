@@ -10,27 +10,26 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     data: [],
- },
+  },
 
   getters: {
     rewards: (state) => state.data,
-    
+
   },
 
   mutations: {
-    fetch(state , res)
-    {
+    fetch(state, res) {
       state.data = res.data
       console.log(state.data);
     }
   },
 
   actions: {
-    async fetchRewards({commit})
-    {
-        let res = await Axios.get(api_endpoint + "/rewards" )
-        console.log(res.data);
-        commit("fetch" , res)
+    async fetchRewards({ commit }) {
+      let headers = AuthService.getApiHeader()
+      let res = await Axios.get(api_endpoint + "/rewards",headers)
+      console.log(res.data);
+      commit("fetch", res)
     }
   },
   modules: {},

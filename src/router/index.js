@@ -9,6 +9,7 @@ import BuyHistory from "@/views/BuyHistory"
 import AdminReward from '@/views/admin/AdminReward'
 import AdminCreateReward from '@/views/admin/CreateReward'
 import AdminEditReward from '@/views/admin/EditReward'
+import AdminLeaderboard from '@/views/admin/AdminLeaderboard'
 import Register from '@/views/auth/Register'
 import Shop from '@/views/Shop'
 
@@ -42,6 +43,12 @@ const routes = [
     path: '/admin/:id/edit',
     name: 'AdminEditReward',
     component: AdminEditReward
+  },
+
+  {
+    path: '/admin/leaderboard',
+    name: 'AdminLeaderboard',
+    component: AdminLeaderboard
   },
   
   {

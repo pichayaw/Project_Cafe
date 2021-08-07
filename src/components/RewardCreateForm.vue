@@ -1,28 +1,45 @@
 <template>
-    <div>
-        <br>
-        <h2>Add New Reward</h2>
-        
-        <br>
+    <div class="addnew">
+        <div class="head">
+        <h1><br> Add New Reward</h1><br>
+        </div>
         <!-- <form @submit.prevent="addReward"> type="submit"-->
-        <div>
-            <div>
+        <div class="input" align=center>
+        <b-card
+          img-src="@/assets/reward2.jpg"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="max-width: 30rem;"
+          class="mb-2"
+        >
+        <b-card-text>
+            <div class="menu">
                 <label for="menu">Menu </label>
-                <br>
-                <input v-model="form.menu" type="text">
+                &nbsp;<input v-model="form.menu" type="text">
             </div>
             <br>
             <div>
                 <label for="diamonds">Diamonds </label>
-                <br>
-                <input v-model="form.diamonds" type="number">
+                &nbsp;<input v-model="form.diamonds" type="number">
             </div>
             <br>
             <div>
-                <button @click="addReward" >ADD</button>
-                 <button @click="exit">Exit</button>
+                <label for="Stock">Stocks </label>
+                &nbsp;<input v-model="form.Stock" type="number">
             </div>
+            <br>
+        </b-card-text>
+            <div>
+                <b-button variant="primary"  class="mb-2" @click="addReward" >
+                    <b-icon icon="bag-plus-fill" aria-hidden="true"></b-icon> Add</b-button>
+                &nbsp;&nbsp;<b-button variant="outline-primary" class="mb-2" @click="exit">
+                    <b-icon icon="arrow-counterclockwise" aria-hidden="true"></b-icon> Exit</b-button>
+            </div>
+        </b-card>
         </div>
+        
+
     </div>
 </template>
 
@@ -34,7 +51,8 @@ export default {
         return {
             form : {
                 menu: '',
-                diamonds: ''
+                diamonds: '',
+                Stock: ''
             }
         }
     },
@@ -42,15 +60,16 @@ export default {
     methods: {
         clearForm() {
             this.form = {
-                name: "",
-                name_jp: "",
-                pokemon_types: ""
+                menu: '',
+                diamonds: '',
+                Stock: ''
             }
         },
         async addReward() {
             let payload = {
                 menu: this.form.menu,
-                diamonds: this.form.diamonds //parseInt(this.form.diamonds, 10)
+                diamonds: this.form.diamonds, //parseInt(this.form.diamonds, 10)
+                Stock: this.form.Stock
             }
 
             console.log(payload)
@@ -73,6 +92,36 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.addnew{
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url("../assets/cake.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 110vh;
+    color: #737f8b ;
+    .head{
+        border: solid#BCAAA4;
+        height: 170px;
+        background-color:#BCAAA4;
+        color: white;
+        margin-bottom: 40px;
+        h1{
+        font-weight: bold;
+        font-size: 3em;
+        text-shadow: 5px 5px rgb(124, 116, 107);
+        letter-spacing: 3px;
+        font-variant: small-caps;
+        }
+    }
+    .menu{
+        input{
+        width: 20rem;
+        }
+    }
+    
+}
 
 </style>
