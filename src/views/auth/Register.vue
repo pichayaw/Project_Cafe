@@ -54,9 +54,7 @@ export default {
     },
     methods:{
         async register(){
-            console.log(1)
             let res = await AuthUser.dispatch('register', this.form)
-            console.log(res)
             if(res.success){
                 this.$swal("Register Success", `Welcome ${res.user.username}`,"success")
                 this.$router.push("/")

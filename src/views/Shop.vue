@@ -6,18 +6,18 @@
         <h1>beverage</h1>
     </div>
      <div class="shop-container">
-        <div v-for="item in beverage" :key ="item.id">
+        <div v-for="water in beverage" :key ="water.id">
             <div> 
                 
                 <label for="">รูปภาพ</label><br>
                 <label for="">menu :</label>
-                <label for=""> {{item.menu}}</label><br>
-                <label for="">แบบร้อน {{item.hot_style}}</label>
-                <button >ใส่ตระกร้า</button><br>
-                <label for="">แบบเย็น {{item.ice_style}}</label>
-                <button >ใส่ตระกร้า</button><br>
-                <label for="">แบบปั่น {{item.blended_style}}</label>
-                <button >ใส่ตระกร้า</button><br>
+                <label for=""> {{water.menu}}</label><br>
+                <label v-if="water.hot_style != '-' " for="">แบบร้อน {{water.hot_style}}</label>
+                <button v-if="water.hot_style != '-' " @click="buyHot(water)">BUY</button><br v-if="water.hot_style != '-' ">
+                <label v-if="water.ice_style != '-' "  for="">แบบเย็น {{water.ice_style}}</label>
+                <button v-if="water.ice_style != '-' "  @click="buyIce(water)">BUY</button><br v-if="water.ice_style != '-' " >
+                <label  v-if="water.blended_style != '-' " for="">แบบปั่น {{water.blended_style}}</label>
+                <button v-if="water.blended_style != '-' " @click="buyBlended(water)">BUY</button><br v-if="water.blended_style != '-' ">
             </div> 
         </div>
       </div>
@@ -25,14 +25,14 @@
         <h1>Food</h1>
       </div>
       <div class="shop-container">
-        <div v-for="item in food" :key ="item.id">
+        <div v-for="kao in food" :key ="kao.id">
             <div> 
                 
                 <label for=""> รูปภาพ</label><br>
                 <label for="">menu :</label>
-                <label for=""> {{item.menu}}</label><br>
-                <label for="">ราคา {{item.price}}</label><br>
-                <button >ใส่ตระกร้า</button><br>
+                <label for=""> {{kao.menu}}</label><br>
+                <label for="">ราคา {{kao.price}}</label><br>
+                <button @click="buyFood(kao)" >BUY</button><br>
                
             </div> 
         </div>
@@ -84,6 +84,55 @@ export default {
             this.food = Water.getters.food;
             console.log(this.food);
         },
+        async buyHot(water) {
+            console.log(1);
+            // console.log(water.hot_style);
+            await AuthUser.dispatch("buyHot" ,water)
+
+        },
+        async buyIce(water) {
+            console.log(1);
+            // console.log(water.hot_style);
+            
+        if (this.user.id !== 2)
+        {
+          swal({
+            title: "ยืนยัน",
+            text: `คุณจะซื้อ ${water.menu} หรือไม่`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then(async (willRedeem) => {
+            if (willRedeem) {
+                
+              swal("ซื้อเสร็จสิ้น", {
+                icon: "success",
+              });
+             await AuthUser.dispatch("buyIce" , water)
+              location.reload()
+            } else {
+              swal("ยกเลิกแล้ว");
+            }
+          });
+        }
+        else
+        {
+           await this.$swal("ไม่สามารถแลกได้","", "warning");
+        }
+        },
+        async buyBlended(water) {
+            console.log(1);
+            // console.log(water.hot_style);
+            await AuthUser.dispatch("buyBlended" , water)
+        },
+
+        async buyFood(food) {
+            console.log(1);
+            // console.log(water.hot_style);
+            await AuthUser.dispatch("buyFood" , food)
+        },
+
 
 
         isAuthen()
