@@ -174,7 +174,7 @@ export default
             let updatePoint = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
             return {status: "success" , message : "แลกของสำเร็จ" , res : updateStock , me : updatePoint}
-
+            
         }
         else{
             console.log("shit555");

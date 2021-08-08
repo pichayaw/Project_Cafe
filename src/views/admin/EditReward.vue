@@ -128,7 +128,6 @@ export default {
                 Stock: this.form.Stock
             }
 
-            console.log("TEST",payload)
             let res = await RewardApiStore.dispatch("deleteReward", payload)
             console.log(res)
             if (res.success) {
@@ -148,7 +147,6 @@ export default {
                 Stock: this.form.Stock
             }
 
-            console.log("TEST",payload)
             let res = await RewardApiStore.dispatch("deleteReward", payload)
             console.log(res)
             if (res.success) {
