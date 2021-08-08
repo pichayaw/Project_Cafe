@@ -83,7 +83,7 @@ export default {
                   icon: "success",
                 });
                 await AuthUser.dispatch("redeem", item);
-                location.reload()
+                this.fetchRewards();
               } else {
                 swal("ยกเลิกแล้ว");
               }
