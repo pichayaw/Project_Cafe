@@ -60,7 +60,6 @@ export default {
     async login() {
       //let res = await AuthService.login(this.from);
       let res = await AuthUser.dispatch('login' , this.from)
-      console.log("1",res)
       if (res.success) {
         this.$swal("Login success", `Welcome, ${res.user.username}`, "success");
         this.$router.push("/");

@@ -1,24 +1,32 @@
 <template>
-  <div>
+  <div class="getreward">
+    <div class="user" align="right">
+      <label for=""
+        >Username : {{ user.username }} and Diamonds :
+        {{ user.diamond_point }}&nbsp;&nbsp;&nbsp;</label>
+    </div>
     <h1>REWARDS</h1>
-    <div class="reward-container">
-      <div v-for="item in reward" :key ="item.id">
-        <div >
-          <!-- {{reward}}  -->
-          <label for=""> รูปภาพ</label><br>
-          <label for="">menu</label>
-          <label for=""> {{item.menu}}</label><br>
-          <label for="">diamond point</label>
-          <label for=""> {{item.diamonds}}</label><br>
-          <label for="">จำนวน</label>
-          <label for=""> {{item.Stock}}</label><br>
-          <button @click="redeem(item)">แลกของ</button>
+    <b-container fluid class="bv-example-row">
+      <div class="reward-container">
+        <div v-for="item in reward" :key="item.id">
+          <div class="reward">
+            <!-- {{reward}}  -->
+            <label for=""> รูปภาพ</label><br />
+            <label for="">Menu : </label>
+            <label for=""> {{ item.menu }}</label
+            ><br />
+            <label for="">Diamonds : </label>
+            <label for=""> {{ item.diamonds }}</label
+            ><br />
+            <label for="">Quantity :</label>
+            <label for=""> {{ item.Stock }}</label
+            ><br />
+            <b-button variant="primary" @click="redeem(item)">Get Reward</b-button>
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-     
-    </div>
+    </b-container>
+    <div></div>
   </div>
 </template>
 
@@ -35,7 +43,6 @@ export default {
   async created() {
     this.fetchRewards();
     this.user = await AuthUser.getters.user;
-    //console.log("sore", this.user);
   },
   mounted() {
     if (!this.isAuthen()) {
@@ -46,8 +53,8 @@ export default {
   methods: {
     async fetchRewards() {
       await RewardsApiStore.dispatch("fetchReward");
+      this.user = await AuthUser.getters.user;
       this.reward = RewardsApiStore.getters.rewards;
-      console.log(this.reward);
     },
 
     async redeem(item) {
@@ -55,8 +62,10 @@ export default {
       // let res = await AuthUser.dispatch("redeem", item);
       // await this.$swal("เติมเงินสำเร็จ","", "success");
       // location.reload()
+      console.log(this.user.diamond_point);
+      console.log(item.diamonds)
 
-      if(this.user.diamond_point >= this.reward.diamonds)
+      if(this.user.diamond_point >= item.diamonds &&this.user.id !== 2)
         {
           if (this.user.id !== 2)
           {
@@ -85,15 +94,17 @@ export default {
             await this.$swal("ไม่สามารถแลกได้","", "warning");
           }
         }
-        else
+        else if (this.user.id === 2)
         { 
-            await this.$swal("Diamond Point  ท่านไม่พอ","", "warning");
+            await this.$swal("ท่านเป็น ADMIN แลกไม่ได้","", "warning");
+        }
+        else
+        {
+            await this.$swal("Diamond ไม่พอ","", "warning");
         }
       
     },
-    
-    
-    
+
     isAuthen() {
       return AuthUser.getters.isAuthen;
     },
@@ -101,12 +112,37 @@ export default {
 };
 </script>
 
-<style>
-.reward-container
-{
-  display: grid ;
+<style lang="scss" scoped>
+.getreward {
+  h1 {
+    padding-top: 30px;
+    border: solid#BCAAA4;
+    height: 120px;
+    background-color: #bcaaa4;
+    letter-spacing: 4px;
+    text-shadow: 5px 5px rgb(114, 98, 84);
+    font-variant: small-caps;
+    color: white;
+  }
+}
+.user {
+  padding-top: 20px;
+  border: solid#A1887F;
+  height: 70px;
+  background-color: #a1887f;
+  color: white;
+  font-size: 1.1rem;
+}
+.reward-container {
+  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.5rem;
   
+  .reward {
+    padding-top: 20px;
+    border: solid#A1887F;
+    font-size: 1.1rem;
+    margin:  20px;
+  }
 }
 </style>

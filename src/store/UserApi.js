@@ -30,7 +30,7 @@ export default new Vuex.Store({
             let url = `${api_endpoint}/users`
             let headers = AuthService.getApiHeader()
             let res = await Axios.get(url, headers)
-
+            
             commit('fetch', { res })
         },
 
