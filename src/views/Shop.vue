@@ -86,51 +86,152 @@ export default {
         },
         async buyHot(water) {
             console.log(1);
-            // console.log(water.hot_style);
-            await AuthUser.dispatch("buyHot" ,water)
-
-        },
-        async buyIce(water) {
-            console.log(1);
-            // console.log(water.hot_style);
-            
-        if (this.user.id !== 2)
-        {
-          swal({
-            title: "ยืนยัน",
-            text: `คุณจะซื้อ ${water.menu} หรือไม่`,
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then(async (willRedeem) => {
-            if (willRedeem) {
-                
-              swal("ซื้อเสร็จสิ้น", {
-                icon: "success",
-              });
-             await AuthUser.dispatch("buyIce" , water)
-              location.reload()
-            } else {
-              swal("ยกเลิกแล้ว");
+           if(this.user.money >= water.hot_style &&this.user.id !== 2) 
+        {   
+            if (this.user.id !== 2)
+            {
+            swal({
+                title: "ยืนยัน",
+                text: `คุณจะซื้อ ${water.menu} หรือไม่`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then(async (willRedeem) => {
+                if (willRedeem) {
+                    
+                swal("ซื้อเสร็จสิ้น", {
+                    icon: "success",
+                });
+                await AuthUser.dispatch("buyHot" , water)
+                location.reload()
+                } else {
+                swal("ยกเลิกแล้ว");
+                }
+            });
             }
-          });
+            else
+            {
+                await this.$swal("ไม่สามารถแลกได้","", "warning");
+            }
         }
         else
         {
-           await this.$swal("ไม่สามารถแลกได้","", "warning");
+            await this.$swal("ตังไม่พอ","", "warning");
+        }    
+            },
+        async buyIce(water) {
+            console.log(1);
+            // console.log(water.hot_style);
+        if(this.user.money >= water.ice_style &&this.user.id !== 2) 
+        {   
+            if (this.user.id !== 2)
+            {
+            swal({
+                title: "ยืนยัน",
+                text: `คุณจะซื้อ ${water.menu} หรือไม่`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then(async (willRedeem) => {
+                if (willRedeem) {
+                    
+                swal("ซื้อเสร็จสิ้น", {
+                    icon: "success",
+                });
+                await AuthUser.dispatch("buyIce" , water)
+                location.reload()
+                } else {
+                swal("ยกเลิกแล้ว");
+                }
+            });
+            }
+            else
+            {
+                await this.$swal("ไม่สามารถแลกได้","", "warning");
+            }
         }
+        else
+        {
+            await this.$swal("ตังไม่พอ","", "warning");
+        }    
         },
         async buyBlended(water) {
             console.log(1);
             // console.log(water.hot_style);
-            await AuthUser.dispatch("buyBlended" , water)
+                
+        if(this.user.money >= water.blended_style &&this.user.id !== 2) 
+        {   
+            if (this.user.id !== 2)
+            {
+            swal({
+                title: "ยืนยัน",
+                text: `คุณจะซื้อ ${water.menu} หรือไม่`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then(async (willRedeem) => {
+                if (willRedeem) {
+                    
+                swal("ซื้อเสร็จสิ้น", {
+                    icon: "success",
+                });
+                await AuthUser.dispatch("buyBlended" , water)
+                location.reload()
+                } else {
+                swal("ยกเลิกแล้ว");
+                }
+            });
+            }
+            else
+            {
+                await this.$swal("ไม่สามารถแลกได้","", "warning");
+            }
+        }
+        else
+        {
+            await this.$swal("ตังไม่พอ","", "warning");
+        }    
         },
 
         async buyFood(food) {
             console.log(1);
             // console.log(water.hot_style);
-            await AuthUser.dispatch("buyFood" , food)
+            if(this.user.money >= food.price &&this.user.id !== 2) 
+        {   
+            if (this.user.id !== 2)
+            {
+            swal({
+                title: "ยืนยัน",
+                text: `คุณจะซื้อ ${food.menu} หรือไม่`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then(async (willRedeem) => {
+                if (willRedeem) {
+                    
+                swal("ซื้อเสร็จสิ้น", {
+                    icon: "success",
+                });
+                await AuthUser.dispatch("buyFood" , food)
+                location.reload()
+                } else {
+                swal("ยกเลิกแล้ว");
+                }
+            });
+            }
+            else
+            {
+                await this.$swal("ไม่สามารถแลกได้","", "warning");
+            }
+        }
+        else
+        {
+            await this.$swal("ตังไม่พอ","", "warning");
+        }    
         },
 
 

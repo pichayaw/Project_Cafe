@@ -202,6 +202,7 @@ export default
         if (me.data.money >= res.data.hot_style)
         {
             me.data.money -= res.data.hot_style 
+            me.data.diamond_point += Math.floor(res.data.hot_style  / 25)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
@@ -242,6 +243,7 @@ export default
         if (me.data.money >= res.data.ice_style)
         {
             me.data.money -= res.data.ice_style
+            me.data.diamond_point += Math.floor(res.data.ice_style / 25)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
@@ -282,6 +284,7 @@ export default
         if (me.data.money >= res.data.blended_style)
         {
             me.data.money -= res.data.blended_style
+            me.data.diamond_point += Math.floor(res.data.blended_style / 25)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
@@ -322,6 +325,7 @@ export default
         if (me.data.money >= res.data.price)
         {
             me.data.money -= res.data.price
+            me.data.diamond_point += Math.floor(res.data.price / 25)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
