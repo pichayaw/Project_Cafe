@@ -147,13 +147,13 @@ export default
         let header = this.getApiHeader()
         console.log(header);
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        console.log("id" ,item.id);
-        console.log(typeof idUser);
+        // console.log("id" ,item.id);
+        // console.log(typeof idUser);
         let res = await Axios.get(api_endpoint + "/rewards/"+item.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        console.log("res" ,res);
-        console.log("userDiamond", me.data.diamond_point)
+        // console.log("res" ,res);
+        // console.log("userDiamond", me.data.diamond_point)
         // console.log("resDiamond" ,res.data.diamonds);
         // console.log("userNAME", me.data.id)
         // console.log("REWard" ,res.data.diamonds);
@@ -182,6 +182,169 @@ export default
         }
         
     },
+
+
+    async buyHot(water)
+    {
+        let header = this.getApiHeader()
+        //console.log(header);
+        let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
+        //console.log("id" ,water.id);
+        //console.log(typeof idUser);
+        let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
+        let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
+
+        // console.log("res" ,res);
+        // console.log("userDiamond", me.data.diamond_point)
+        // console.log("resDiamond" ,res.data.hot_style);
+        // console.log("userNAME", me.data.id)
+        // console.log("REWard" ,res.data.diamonds);
+        if (me.data.money >= res.data.hot_style)
+        {
+            me.data.money -= res.data.hot_style 
+            let url = `${api_endpoint}/product-histories`
+            let body ={
+               user: me.data ,
+               beverage: res.data ,
+               diamond_point: Math.floor(res.data.hot_style / 25),
+               price : res.data.hot_style
+            }
+            console.log("body ",body);
+            
+            //console.log("2",eiei);
+            let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
+            await Axios.post(url , body , header)
+            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+
+        }
+        else{
+            console.log("shit555");
+            return {status : "error" , message : "แลกไม่ได้"}
+        }
+        
+    },
+
+    async buyIce(water)
+    {
+        let header = this.getApiHeader()
+        //console.log(header);
+        let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
+        //console.log("id" ,water.id);
+        //console.log(typeof idUser);
+        let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
+        let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
+
+        // console.log("res" ,res);
+        // console.log("userDiamond", me.data.diamond_point)
+        // console.log("resDiamond" ,res.data.hot_style);
+        // console.log("userNAME", me.data.id)
+        // console.log("REWard" ,res.data.diamonds);
+        if (me.data.money >= res.data.ice_style)
+        {
+            me.data.money -= res.data.ice_style
+            let url = `${api_endpoint}/product-histories`
+            let body ={
+               user: me.data ,
+               beverage: res.data ,
+               diamond_point: Math.floor(res.data.ice_style / 25) ,
+               price : res.data.ice_style
+            }
+            console.log("body ",body);
+            
+            //console.log("2",eiei);
+            let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
+            await Axios.post(url , body , header)
+            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+
+        }
+        else{
+            console.log("shit555");
+            return {status : "error" , message : "แลกไม่ได้"}
+        }
+        
+    },
+
+    async buyBlended(water)
+    {
+        let header = this.getApiHeader()
+        //console.log(header);
+        let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
+        //console.log("id" ,water.id);
+        //console.log(typeof idUser);
+        let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
+        let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
+
+        // console.log("res" ,res);
+        // console.log("userDiamond", me.data.diamond_point)
+        // console.log("resDiamond" ,res.data.hot_style);
+        // console.log("userNAME", me.data.id)
+        // console.log("REWard" ,res.data.diamonds);
+        if (me.data.money >= res.data.blended_style)
+        {
+            me.data.money -= res.data.blended_style
+            let url = `${api_endpoint}/product-histories`
+            let body ={
+               user: me.data ,
+               beverage: res.data ,
+               diamond_point: Math.floor(res.data.blended_style / 25) ,
+               price : res.data.blended_style
+            }
+            console.log("body ",body);
+            
+            //console.log("2",eiei);
+            let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
+            await Axios.post(url , body , header)
+            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+
+        }
+        else{
+            console.log("shit555");
+            return {status : "error" , message : "แลกไม่ได้"}
+        }
+        
+    },
+
+    async buyFood(kao)
+    {
+        let header = this.getApiHeader()
+        //console.log(header);
+        let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
+        //console.log("id" ,water.id);
+        //console.log(typeof idUser);
+        let res = await Axios.get(api_endpoint + "/foods/"+kao.id , header)
+        let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
+
+        // console.log("res" ,res);
+        // console.log("userDiamond", me.data.diamond_point)
+        // console.log("resDiamond" ,res.data.hot_style);
+        // console.log("userNAME", me.data.id)
+        // console.log("REWard" ,res.data.diamonds);
+        if (me.data.money >= res.data.price)
+        {
+            me.data.money -= res.data.price
+            let url = `${api_endpoint}/product-histories`
+            let body ={
+               user: me.data ,
+               food: res.data ,
+               diamond_point: Math.floor(res.data.price / 25) ,
+               price : res.data.price
+            }
+            console.log("body ",body);
+            
+            //console.log("2",eiei);
+            let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
+            await Axios.post(url , body , header)
+            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+
+        }
+        else{
+            console.log("shit555");
+            return {status : "error" , message : "แลกไม่ได้"}
+        }
+        
+    },
+
+
 
     async refresh()
     {

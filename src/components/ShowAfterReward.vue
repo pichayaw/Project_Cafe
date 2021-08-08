@@ -51,9 +51,45 @@ export default {
     },
 
     async redeem(item) {
-      console.log("this" ,item);
-      await AuthUser.dispatch("redeem", item);
-      this.fetchRewards()
+      console.log("this" ,this.user);
+      // let res = await AuthUser.dispatch("redeem", item);
+      // await this.$swal("เติมเงินสำเร็จ","", "success");
+      // location.reload()
+
+      if(this.user.diamond_point >= this.reward.diamonds)
+        {
+          if (this.user.id !== 2)
+          {
+            swal({
+              title: "ยืนยัน",
+              text: `คุณจะแลก ${item.menu} หรือไม่`,
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then(async (willRedeem) => {
+              if (willRedeem) {
+                  
+                swal("แลกของเสร็จสิ้น", {
+                  icon: "success",
+                });
+                await AuthUser.dispatch("redeem", item);
+                location.reload()
+              } else {
+                swal("ยกเลิกแล้ว");
+              }
+            });
+          }
+          else
+          {
+            await this.$swal("ไม่สามารถแลกได้","", "warning");
+          }
+        }
+        else
+        { 
+            await this.$swal("Diamond Point  ท่านไม่พอ","", "warning");
+        }
+      
     },
     
     

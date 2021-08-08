@@ -8,8 +8,8 @@
       </p>
       <router-link to="/">MENU</router-link>
       <h5>|</h5>
-      <router-link v-if="isAuthen()" to="/shop" >SHOP</router-link>
-      <h5 v-if="isAuthen()" >|</h5>
+      <router-link v-if="isAuthen() && !isAdmin()" to="/shop" >SHOP</router-link>
+      <h5 v-if="isAuthen()&& !isAdmin()" >|</h5>
       <router-link  to="/rewards" >REWARDS</router-link>
       <h5 v-if="isAuthen()" >|</h5>
       <router-link v-if="isAuthen() && isAdmin()" to="/admin/rewards" >ADMIN REWARDS</router-link>

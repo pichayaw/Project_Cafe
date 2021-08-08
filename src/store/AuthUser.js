@@ -49,9 +49,9 @@ export default new Vuex.Store({
       async update(state , user )
       {
         //console.log("this is update " , user);
-        let res = await AuthService.refresh()
+        // let res = await AuthService.refresh()
         //console.log("this is res",res);
-        state.user = res
+        state.user = user
       },
 
       async updateStock(state , stock)
@@ -119,6 +119,82 @@ export default new Vuex.Store({
           {
             console.error(res.message)
           }
+      },
+
+      async buyHot({commit} , water)
+      {
+          console.log(2);
+          let res = await AuthService.buyHot(water)
+          console.log("this is " ,res.me);
+          console.log("this is " ,res.status);
+          if(res.status === "success")
+          {
+            console.log("this is " ,res.status);
+            commit('update' , res.me)
+            //console.log("this is " ,res.status);
+            return res ;
+          }  
+          else
+          {
+            console.error(res.message)
+          }
+      },
+
+      async buyIce({commit} , water)
+      {
+          console.log(2);
+          let res = await AuthService.buyIce(water)
+          console.log("this is " ,res.me);
+          console.log("this is " ,res.status);
+          if(res.status === "success")
+          {
+            console.log("this is " ,res.status);
+            commit('update' , res.me)
+            //console.log("this is " ,res.status);
+            return res ;
+          }  
+          else
+          {
+            console.error(res.message)
+          }
+      },
+
+      async buyBlended({commit} , water)
+      {
+          console.log(2);
+          let res = await AuthService.buyBlended(water)
+          console.log("this is " ,res.me);
+          console.log("this is " ,res.status);
+          if(res.status === "success")
+          {
+            console.log("this is " ,res.status);
+            commit('update' , res.me)
+            //console.log("this is " ,res.status);
+            return res ;
+          }  
+          else
+          {
+            console.error(res.message)
+          }
+      },
+
+      async buyFood({commit} , kao)
+      {
+        console.log(2);
+        let res = await AuthService.buyFood(kao)
+        console.log("this is " ,res.me);
+        console.log("this is " ,res.status);
+        if(res.status === "success")
+        {
+          console.log("this is " ,res.status);
+          commit('update' , res.me)
+          //console.log("this is " ,res.status);
+          return res ;
+        }  
+        else
+        {
+          console.error(res.message)
+        }
       },
 
       async register({ commit },{ username, email, password })
