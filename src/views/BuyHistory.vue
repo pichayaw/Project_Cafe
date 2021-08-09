@@ -83,6 +83,13 @@ export default {
     this.rewards = RewardStore.getters.rewards;
     console.log(this.rewards);
   },
+  mounted()
+    {
+        if (!this.isAuthen()) {
+            this.$swal("ห้ามเข้า", `ไป login ซะ`, "warning");
+            this.$router.push("/");
+        }
+    },
   methods: {
     getFood(id) {
       for (let i = 0; i < this.foods.length; i++) {
@@ -122,6 +129,10 @@ export default {
         timeZone: "Asia/Bangkok",
       };
       return new Intl.DateTimeFormat("en-GB", options).format(date);
+    },
+
+    isAuthen() {
+      return AuthUser.getters.isAuthen;
     },
   },
 };

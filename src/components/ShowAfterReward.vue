@@ -65,7 +65,7 @@ export default {
       console.log(this.user.diamond_point);
       console.log(item.diamonds)
 
-      if(this.user.diamond_point >= item.diamonds &&this.user.id !== 2)
+      if(this.user.diamond_point >= item.diamonds &&this.user.id !== 2 && item.Stock > 0)
         {
           if (this.user.id !== 2)
           {
@@ -97,6 +97,10 @@ export default {
         else if (this.user.id === 2)
         { 
             await this.$swal("ท่านเป็น ADMIN แลกไม่ได้","", "warning");
+        }
+        else if (item.Stock === 0)
+        { 
+            await this.$swal(`${item.menu} หมดแล้ว แลกไม่ได้`,"", "warning");
         }
         else
         {

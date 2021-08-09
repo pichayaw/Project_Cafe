@@ -202,12 +202,12 @@ export default
         if (me.data.money >= res.data.hot_style)
         {
             me.data.money -= res.data.hot_style 
-            me.data.diamond_point += Math.floor(res.data.hot_style  / 25)
+            me.data.diamond_point += Math.floor(res.data.hot_style  / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                beverage: res.data ,
-               diamond_point: Math.floor(res.data.hot_style / 25),
+               diamond_point: Math.floor(res.data.hot_style / 20),
                price : res.data.hot_style
             }
             console.log("body ",body);
@@ -243,12 +243,12 @@ export default
         if (me.data.money >= res.data.ice_style)
         {
             me.data.money -= res.data.ice_style
-            me.data.diamond_point += Math.floor(res.data.ice_style / 25)
+            me.data.diamond_point += Math.floor(res.data.ice_style / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                beverage: res.data ,
-               diamond_point: Math.floor(res.data.ice_style / 25) ,
+               diamond_point: Math.floor(res.data.ice_style / 20) ,
                price : res.data.ice_style
             }
             console.log("body ",body);
@@ -284,12 +284,12 @@ export default
         if (me.data.money >= res.data.blended_style)
         {
             me.data.money -= res.data.blended_style
-            me.data.diamond_point += Math.floor(res.data.blended_style / 25)
+            me.data.diamond_point += Math.floor(res.data.blended_style / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                beverage: res.data ,
-               diamond_point: Math.floor(res.data.blended_style / 25) ,
+               diamond_point: Math.floor(res.data.blended_style / 20) ,
                price : res.data.blended_style
             }
             console.log("body ",body);
@@ -325,12 +325,12 @@ export default
         if (me.data.money >= res.data.price)
         {
             me.data.money -= res.data.price
-            me.data.diamond_point += Math.floor(res.data.price / 25)
+            me.data.diamond_point += Math.floor(res.data.price / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                food: res.data ,
-               diamond_point: Math.floor(res.data.price / 25) ,
+               diamond_point: Math.floor(res.data.price / 20) ,
                price : res.data.price
             }
             console.log("body ",body);
