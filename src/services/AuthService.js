@@ -208,7 +208,8 @@ export default
                user: me.data ,
                beverage: res.data ,
                diamond_point: Math.floor(res.data.hot_style / 20),
-               price : res.data.hot_style
+               price : res.data.hot_style ,
+               type :  "hot style "
             }
             console.log("body ",body);
             
@@ -249,7 +250,8 @@ export default
                user: me.data ,
                beverage: res.data ,
                diamond_point: Math.floor(res.data.ice_style / 20) ,
-               price : res.data.ice_style
+               price : res.data.ice_style ,
+               type :  "ice style"
             }
             console.log("body ",body);
             
@@ -290,7 +292,8 @@ export default
                user: me.data ,
                beverage: res.data ,
                diamond_point: Math.floor(res.data.blended_style / 20) ,
-               price : res.data.blended_style
+               price : res.data.blended_style,
+               type :  "blended style"
             }
             console.log("body ",body);
             
@@ -331,7 +334,8 @@ export default
                user: me.data ,
                food: res.data ,
                diamond_point: Math.floor(res.data.price / 20) ,
-               price : res.data.price
+               price : res.data.price, 
+               
             }
             console.log("body ",body);
             

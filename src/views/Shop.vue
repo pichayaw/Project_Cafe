@@ -38,7 +38,7 @@
     <div class="shop-container">
       <div v-for="kao in food" :key="kao.id">
         <div>
-          <label for=""> รูปภาพ</label><br />
+          
           <label for="">menu :</label>
           <label for=""> {{ kao.menu }}</label
           ><br />

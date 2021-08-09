@@ -11,7 +11,6 @@
         <div v-for="item in reward" :key="item.id">
           <div class="reward">
             <!-- {{reward}}  -->
-            <label for=""> รูปภาพ</label><br />
             <label for="">Menu : </label>
             <label for=""> {{ item.menu }}</label
             ><br />
