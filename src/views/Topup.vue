@@ -2,7 +2,7 @@
   <div class="topup">
     <div class="user" align="right">
       <label for=""
-        >Username : {{ user.username }}and Diamonds :
+        >Username : {{ user.username }} and Diamonds :
         {{ user.diamond_point }}&nbsp;&nbsp;&nbsp;</label
       >
     </div>

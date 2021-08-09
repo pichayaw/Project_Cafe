@@ -53,48 +53,6 @@
         </b-carousel>
       </div>
 
-      <!-- <div class="ontop">
-        
-        <b-carousel
-          id="carousel-fade"
-          style="text-shadow: 0px 0px 2px #000"
-          fade
-          indicators
-
-          >
-          <b-carousel-slide>
-          <template #img>
-            <img
-              class="d-block img-fluid w-75 mx-auto d-block"
-              width="100"
-              height="300"
-              src="@/assets/cafe1.jpg"
-            >
-          </template>
-          </b-carousel-slide>
-          <b-carousel-slide>
-          <template #img>
-            <img
-              class="d-block img-fluid w-75 mx-auto d-block"
-              width="100"
-              height="300"
-              src="@/assets/cafe2.jpg"
-            >
-          </template>
-          </b-carousel-slide>
-          <b-carousel-slide>
-          <template #img>
-            <img
-              class="d-block img-fluid w-75 mx-auto d-block"
-              width="1024"
-              height="480"
-              src="@/assets/cafe33.jpg"
-            >
-          </template>
-          </b-carousel-slide>
-          </b-carousel>
-      </div> -->
-
 
       <div class="beverage">
         <h2>Baverage</h2>
@@ -103,24 +61,6 @@
         <img class="df" src="@/assets/drink1.jpg" alt="drink1">
         <img class="df" src="@/assets/drink3.jpg" alt="drink3">
 
-      <!-- <b-table sticky-header="400px" :items="beverage"> -->
-        <!-- <thead>
-          <tr>
-            <th>Menu</th>
-            <th>Hot</th>
-            <th>Iced</th>
-            <th>Blended</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row,rows) in beverage" :key="rows">
-            <td>{{row.menu}}</td>
-            <td>{{row.hot}}</td>
-            <td>{{row.iced}}</td>
-            <td>{{row.blended}}</td>
-          </tr>
-        </tbody> -->
-      <!-- </b-table> -->
 
       <div class="container">
         <table class="table table-striped table-hover " sticky-header="400px">
