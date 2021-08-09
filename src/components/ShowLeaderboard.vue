@@ -1,32 +1,27 @@
 <template>
-    <div>
-        <h1>Leaderboard</h1>
-
+  <div>
+    <h1>Leaderboard</h1>
     <div>
       <label for="start">date</label>
-      <input type="date" v-model="date.start"> 
-      <input type="date" v-model="date.end">
+      <input type="date" v-model="date.start" />
+      <input type="date" v-model="date.end" />
     </div>
 
-      <br>
-        <button @click="sortByGet">Sort by Diamonds Get</button>
-      <br>
-      <br>
-      <button @click="sortByEarn">Sort by Diamonds Earn</button>
-      <br>
-    
+    <br>
+      <button @click="sortByGet">Sort Diamonds Get</button>
+    <br>
+    <br>
+      <button @click="sortByEarn">Sort Diamonds Earn</button>
+    <br>
+
     <div>
-      <div>
-        
-      </div>
       <table>
         <thead>
           <tr>
             <th>#</th>
             <th>Username</th>
             <th>Email</th>
-            <th>GET Diamonds</th>
-            <th>Date</th>
+            <th>Get Diamonds</th>
           </tr>
         </thead>
         <tbody>
@@ -34,18 +29,14 @@
             <td>{{ index + 1 }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ productHistories(index) }}</td>
-            <td>{{ dateGet(index) }}</td>
+            <td>{{ productHistories(user) }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
     <div>
-      <div>
-        
-      </div>
       <table>
         <thead>
           <tr>
@@ -53,7 +44,6 @@
             <th>Username</th>
             <th>Email</th>
             <th>EARN Diamonds</th>
-            <th>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -61,233 +51,143 @@
             <td>{{ index + 1 }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ rewardHistories(index) }}</td>
-            <td>{{ dateEarn(index) }}</td>
+            <td>{{ rewardHistories(user) }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    
-
-    </div>
+  </div>
 </template>
 
 <script>
-import AuthUser from '@/store/AuthUser'
-import UserApi from '@/store/UserApi'
-import moment from 'moment'
-
+import UserApi from "@/store/UserApi";
+import moment from "moment";
 export default {
-    data(){
-        return{
-          users:[],
-          date:{
-              start:'',
-              end:''
-            },
-          
+  data() {
+    return {
+      users: [],
+      date: {
+        start: "",
+        end: "",
+      },
+    };
+  },
+  async created() {
+    this.fetchUser();
+    
+  },
+
+  methods: {
+    async fetchUser() {
+      await UserApi.dispatch("fetchUser");
+      let res = UserApi.getters.users;
+      res.forEach((element) => {
+        if (element.username !== "admin") {
+          this.users.push(element);
+        }
+      });
+    },
+
+    dateGet(user) {
+      let d = 0 ;
+      let start;
+      let end;
+
+      if (this.date.start == "") {
+        start = 0;
+        end = 0;
+      } else {
+        start = moment(this.date.start).format('YYYY-MM-DD');
+        end = moment(this.date.end).format('YYYY-MM-DD');
+      }
+      user.product_histories.forEach((product) => {
+        d = moment(product.created_at).format('YYYY-MM-DD');
+        if (start <= d && end >= d) {
+          // console.log("Date",d);
           
         }
-    },
-    
-    async created(){
-        this.fetchUser()
-        this.user = await AuthUser.getters.user
-        // this.arrayGG = this.sortG()
+        console.log("Date",d);
+      });
+      return d;
     },
 
-    computed: {
-    //     sortArray() {
-
-    //     },
-    //     selectData() {
-    //       let selected = []
-    //       this.users[index].foreach((product) => {
-    //       d = moment(product.created_at).format('YYYY-MM-DD')
-    //       if(start <= d && end >= d){
-    //             console.log("-----")
-    //             console.log("SUM of GET : ", sum);
-    //             console.log('between start and end')
-    //             sum += product.diamond_point
-                
-    //         } 
-    //       })
-          
-    //     },
-        
-
-        sortByGet : function (){
-          console.log("THIS USER : ", this.users );
-          this.users.sort((a, b) => {
-            return this.productHistories(b) - this.productHistories(a)})
-        },
-        sortByEarn : function (){
-          this.users.sort((a, b) => {
-            return this.rewardHistories(b) - this.rewardHistories(a)})
+    productHistories(user) {
+      let sum = 0;
+      let d;
+      let start;
+      let end;
+      if (this.date.start == "") {
+        start = 0
+        end = 0
+        // (start = 0), (end = 0);
+      } else {
+        start = moment(this.date.start).format('YYYY-MM-DD');
+        end = moment(this.date.end).format('YYYY-MM-DD');
+      }
+      user.product_histories.forEach((element) => {
+        d = moment(element.created_at).format('YYYY-MM-DD');
+        if (start <= d && end >= d) {
+          sum += element.diamond_point;
         }
+      });
+      return sum;
     },
 
-    methods: {
+    dateEarn(user) {
+      let d;
+      let start;
+      let end;
 
-        async fetchUser(){
-                await UserApi.dispatch('fetchUser')
-                for(let i = 0; i <= UserApi.getters.users.length; i++) {
-                    if( UserApi.getters.users[i].username !== "admin") {
-                    this.users.push(UserApi.getters.users[i])
-                    }
-                }
-               
-            },
-        getToday() {
-            return moment(new Date()).format("YYYY-MM-DD")
-        },
+      if (this.date.start == "") {
+        start = 0;
+        end = 0;
+      } else {
+        start = moment(this.date.start).format('YYYY-MM-DD');
+        end = moment(this.date.end).format('YYYY-MM-DD');
+      }
+      user.reward_histories.forEach((reward) => {
+        d = moment(reward.created_at).format('YYYY-MM-DD');
+        if (start <= d && end >= d) {
+          return d;
+        }
+      });
+    },
 
-        dateGet(index) {
-            let d
-            let start
-            let end 
-          
-          if(this.date.start == ''){
-            start = 0
-            end = 0
-          }else{
-            start = moment(this.date.start).format('YYYY-MM-DD')
-            end = moment(this.date.end).format('YYYY-MM-DD')
-          }
-          
-          for(let j = 0; j < this.users[index].product_histories.length; j++ ){
-              // console.log("lenght : ", this.users[index].product_histories.length)
-              d = moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD')
-              if(start <= d && end >= d){
-                  return d 
-    
-              }                   
-          }
-          
-        },
+    rewardHistories(user) {
+      let sum = 0;
+      let d;
+      let start;
+      let end;
+      if (this.date.start == "") {
+        start = 0
+        end = 0
+        // (start = 0), (end = 0);
+      } else {
+        start = moment(this.date.start).format("YYYY-MM-DD");
+        end = moment(this.date.end).format("YYYY-MM-DD");
+      }
+      user.reward_histories.forEach((element) => {
+        d = moment(element.created_at).format("YYYY-MM-DD");
+        if (start <= d && end >= d) {
+          sum += element.reward_point;
+        }
+      });
+      return sum;
+    },
 
-        productHistories(index) {
-          let sum = 0
-          let d
-          let start
-          let end 
-          let arrayGet = []
-          this.arrayGG = []
-          
-          if(this.date.start == ''){
-            start = 0
-            end = 0
-          }else{
-            start = moment(this.date.start).format('YYYY-MM-DD')
-            end = moment(this.date.end).format('YYYY-MM-DD')
-          }
-          // console.log("--------------GET-------------");
-          // console.log("Date start of GET :", start);
-          // console.log("Date end of GET :", end);
+    sortByGet() {
+      this.users.sort(
+        (a, b) => this.productHistories(b) - this.productHistories(a)
+      );
+    },
 
-    
-            for(let j = 0; j < this.users[index].product_histories.length; j++ ){
-                d = moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD')
-                if(start <= d && end >= d){
-                    // console.log("-----")
-                    // console.log("USER of GET :", this.users[index].username);
-                    // console.log("SUM of GET : ", sum);
-                    // console.log('between start and end')
-                    sum += this.users[index].product_histories[j].diamond_point
-                } 
-            // return new Intl.DateTimeFormat('en-GB', options).format(d) moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD');
-            }
-            arrayGet.push(this.users[index].username)
-            arrayGet.push(sum)
-            this.arrayGG = arrayGet
-            console.log("Array Get:", this.arrayGG);
-            return sum
-          
-        },
-
-        // sortG(arrayG){
-        //     console.log("Array Get:", arrayG);
-        //     this.arrayGG = arrayG
-
-        // },
-
-        dateEarn(index) {
-            let d
-            let start
-            let end 
-          
-          if(this.date.start == ''){
-            start = 0
-            end = 0
-          }else{
-            start = moment(this.date.start).format('YYYY-MM-DD')
-            end = moment(this.date.end).format('YYYY-MM-DD')
-          }
-          
-          for(let j = 0; j < this.users[index].reward_histories.length; j++ ){
-              d = moment(this.users[index].reward_histories[j].created_at).format('YYYY-MM-DD')
-              if(start <= d && end >= d){
-                  return d 
-    
-              }                   
-          }
-          
-        },
-
-        rewardHistories(index) {
-            let sum = 0
-            let d
-            let start
-            let end 
-            
-            if(this.date.start == ''){
-              start = 0
-              end = 0
-            }else{
-              start = moment(this.date.start).format('YYYY-MM-DD')
-              end = moment(this.date.end).format('YYYY-MM-DD')
-            }
-            // console.log("--------------EARN-------------");
-            // console.log("Date start of EARN :", start);
-            // console.log("Date end of EARN :", end);
-            for(let j = 0; j < this.users[index].reward_histories.length; j++ ){
-              d = moment(this.users[index].reward_histories[j].created_at).format('YYYY-MM-DD')
-                if(start <= d && end >= d){
-                    // console.log("-----")
-                    // console.log("USER of EARN :", this.users[index].username);
-                    // console.log("SUM of EARN : ", sum);
-                    // console.log('between start and end')
-                    sum += this.users[index].reward_histories[j].reward_point
-                    
-                }
-                    
-            }
-            return sum
-        },
-
-        // sortByGet(){
-        //   // let array = []
-        //   console.log("TESTTTTTTT");
-        //   console.log("AG : ", this.arrayGG);
-        //   // this.users.forEach((item, index) => {
-        //   //   array.push(this.productHistories(index))
-        //   // })
-          
-        //   this.arrayGG.sort((a, b) => {
-        //   return b[1] - a[1]
-        //     })
-          
-        // },
-        // sortByEarn(){
-        //   this.users.sort((a, b) => this.rewardHistories(b) - this.rewardHistories(a))
-        // }
-
-        
-    }
-
-}
+    sortByEarn() {
+      this.users.sort(
+        (a, b) => this.rewardHistories(b) - this.rewardHistories(a)
+      );
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

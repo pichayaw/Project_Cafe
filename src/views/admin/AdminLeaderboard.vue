@@ -1,20 +1,18 @@
 <template>
     <div>
         <!-- <show-leaderboard></show-leaderboard> -->
-        <show-leaderboardd></show-leaderboardd>
+        <show-leaderboard></show-leaderboard>
     </div>
 </template>
 
 <script>
-// import ShowLeaderboard from '@/components/ShowLeaderboard'
 import AuthUser from "@/store/AuthUser";
 import LeaderboardDate from '@/components/LeaderboardDate.vue';
-import ShowLeaderboardd from '@/components/ShowLeaderboardd.vue';
+import ShowLeaderboard from '@/components/ShowLeaderboard.vue';
 export default {
     components: { 
-        // ShowLeaderboard,
         LeaderboardDate,
-        ShowLeaderboardd
+        ShowLeaderboard
     },
 
     mounted() {
