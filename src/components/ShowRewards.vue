@@ -18,7 +18,6 @@
           Create an account <br />
           <router-link to="/rewards/register">click</router-link>
         </p>
-        <!--เชื่อม link สมัคร user ผู้ใช้-->
         <p>
           2 <br />
           Order and pay how you’d like
@@ -28,7 +27,6 @@
           Earn Diamonds, get Rewards <br />
           <a href="http://localhost:8080/login">log in</a>
         </p>
-        <!--เชื่อม link เข้าสู่ระบบผู้ใช้-->
       </div>
     </div>
 
@@ -39,7 +37,7 @@
         those Diamonds add up to (your really favorite) Rewards.
       </p>
       <h3>
-        <b-icon icon="gem" font-scale="1.5"></b-icon> Collect 1 Diamonds per 25
+        <b-icon icon="gem" font-scale="1.5"></b-icon> Collect 1 Diamonds per 20
         Baht
       </h3>
     </div>
