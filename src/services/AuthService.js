@@ -194,11 +194,6 @@ export default
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.hot_style)
         {
             me.data.money -= res.data.hot_style 
@@ -236,11 +231,6 @@ export default
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.ice_style)
         {
             me.data.money -= res.data.ice_style
@@ -278,11 +268,6 @@ export default
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.blended_style)
         {
             me.data.money -= res.data.blended_style
@@ -320,11 +305,6 @@ export default
         let res = await Axios.get(api_endpoint + "/foods/"+kao.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.price)
         {
             me.data.money -= res.data.price
@@ -335,6 +315,7 @@ export default
                food: res.data ,
                diamond_point: Math.floor(res.data.price / 20) ,
                price : res.data.price, 
+               type : "-"
                
             }
             console.log("body ",body);
