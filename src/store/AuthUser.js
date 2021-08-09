@@ -61,18 +61,18 @@ export default new Vuex.Store({
       async login ({commit} ,{ email , password})
       {
         let res = await AuthService.login({ email , password})
-        console.log("TEST",res)
+        
         let body = {
           user : res.user ,
           jwt: res.jwt
           }
-          console.log("body ",body);
+          
           
         if (res.success)
         {
             commit('loginSuccess' , body)
         }
-        //console.log(res.message)
+        
         return res
       },
 
@@ -85,7 +85,7 @@ export default new Vuex.Store({
       async topup({commit} , money)
       {
           let res = await AuthService.topup(money)
-          console.log("this is topup" ,res.res);
+          
           
           if(res.status === "success")
           {
@@ -101,12 +101,12 @@ export default new Vuex.Store({
       async redeem({commit} ,item)
       {
           let res = await AuthService.redeem(item)
-          console.log("this is " ,res.me);
+        
           if(res.status === "success")
           {
-            console.log("this is " ,res);
+            
             commit('updateStock' , res.me)
-            console.log("this is " ,res.status);
+            
             return res ;
           }  
           else
@@ -117,15 +117,14 @@ export default new Vuex.Store({
 
       async buyHot({commit} , water)
       {
-          console.log(2);
+          
           let res = await AuthService.buyHot(water)
-          console.log("this is " ,res.me);
-          console.log("this is " ,res.status);
+          
           if(res.status === "success")
           {
-            console.log("this is " ,res.status);
+            
             commit('update' , res.me)
-            //console.log("this is " ,res.status);
+           
             return res ;
           }  
           else
@@ -136,15 +135,14 @@ export default new Vuex.Store({
 
       async buyIce({commit} , water)
       {
-          console.log(2);
+         
           let res = await AuthService.buyIce(water)
-          console.log("this is " ,res.me);
-          console.log("this is " ,res.status);
+          
           if(res.status === "success")
           {
-            console.log("this is " ,res.status);
+            
             commit('update' , res.me)
-            //console.log("this is " ,res.status);
+            
             return res ;
           }  
           else
@@ -155,15 +153,14 @@ export default new Vuex.Store({
 
       async buyBlended({commit} , water)
       {
-          console.log(2);
+          
           let res = await AuthService.buyBlended(water)
-          console.log("this is " ,res.me);
-          console.log("this is " ,res.status);
+          
           if(res.status === "success")
           {
-            console.log("this is " ,res.status);
+            
             commit('update' , res.me)
-            //console.log("this is " ,res.status);
+            
             return res ;
           }  
           else
@@ -174,15 +171,14 @@ export default new Vuex.Store({
 
       async buyFood({commit} , kao)
       {
-        console.log(2);
+        
         let res = await AuthService.buyFood(kao)
-        console.log("this is " ,res.me);
-        console.log("this is " ,res.status);
+        
         if(res.status === "success")
         {
-          console.log("this is " ,res.status);
+          
           commit('update' , res.me)
-          //console.log("this is " ,res.status);
+          
           return res ;
         }  
         else

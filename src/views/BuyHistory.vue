@@ -83,7 +83,7 @@ export default {
     this.beverages = MenuStore.getters.menu;
     await RewardStore.dispatch("fetchRewards");
     this.rewards = RewardStore.getters.rewards;
-    console.log(this.rewards);
+    
   },
   mounted()
     {

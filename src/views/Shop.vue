@@ -12,25 +12,25 @@
       <div class="shop-container">
         <div v-for="water in beverage" :key="water.id">
           <div class="beverage">
-            <label for="">Menu :&nbsp;&nbsp;</label>
-            <label for=""> {{ water.menu }}</label
+            <label class="Big mb-3" for="">Menu :&nbsp;&nbsp;</label>
+            <label class="Big mb-3" for=""> {{ water.menu }}</label
             ><br />
             <label v-if="water.hot_style != '-'" for=""
               >Hot {{ water.hot_style }}</label
             >
-&nbsp;&nbsp;&nbsp;<b-button variant="warning"  v-if="water.hot_style != '-'" @click="buyHot(water)">
+&nbsp;&nbsp;&nbsp;<b-button  variant="danger"  v-if="water.hot_style != '-'" @click="buyHot(water)">
               BUY</b-button
             ><br v-if="water.hot_style != '-'" />
             <label v-if="water.ice_style != '-'" for=""
               >Iced {{ water.ice_style }}</label
             >
-            &nbsp;&nbsp;&nbsp;<b-button variant="danger" v-if="water.ice_style != '-'" @click="buyIce(water)">
+            &nbsp;&nbsp;&nbsp;<b-button variant="info" v-if="water.ice_style != '-'" @click="buyIce(water)">
               BUY</b-button
             ><br v-if="water.ice_style != '-'" />
             <label v-if="water.blended_style != '-'" for=""
               >Blended {{ water.blended_style }}</label
             >
-            &nbsp;&nbsp;&nbsp;<b-button variant="info" 
+            &nbsp;&nbsp;&nbsp;<b-button class="mb-3" variant="warning" 
               v-if="water.blended_style != '-'"
               @click="buyBlended(water)"
             >
@@ -94,16 +94,16 @@ export default {
     async fetchMenu() {
       await Food.dispatch("fetchMenu");
       this.beverage = Food.getters.menu;
-      console.log(this.beverage);
+      
     },
 
     async fetchFood() {
       await Water.dispatch("fetchFood");
       this.food = Water.getters.food;
-      console.log(this.food);
+      
     },
     async buyHot(water) {
-      console.log(1);
+      
       if (this.user.money >= water.hot_style && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
@@ -133,8 +133,8 @@ export default {
       }
     },
     async buyIce(water) {
-      console.log(1);
-      // console.log(water.hot_style);
+      
+      
       if (this.user.money >= water.ice_style && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
@@ -270,6 +270,9 @@ h2{
     font-size: 1.1rem;
     margin: 20px;
   }
+}
+.Big{
+  font-size: 24px;
 }
 }
 

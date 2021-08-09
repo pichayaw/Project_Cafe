@@ -41,7 +41,7 @@ export default new Vuex.Store({
         },
 
         async addReward({ commit }, payload) {
-            console.log("payload",payload)
+            
             let url = `${api_endpoint}/rewards`
 
             let body = {
@@ -87,7 +87,7 @@ export default new Vuex.Store({
         },
 
         async editReward({ commit }, payload) {
-            console.log('payload', payload)
+            
 
             let url = `${api_endpoint}/rewards/${payload.id}` 
             let body = {
@@ -95,15 +95,14 @@ export default new Vuex.Store({
                 diamonds: payload.diamonds,
                 Stock: payload.Stock
             }
-            console.log('body', payload)
+            
             
             try {
                 let headers = AuthService.getApiHeader()
                 let res = await Axios.put(url, body, headers)
 
                 if (res.status === 200 && payload.diamonds >= 0) {
-                    console.log(payload.id)
-                    console.log("commit('edit')", payload.index, res.data)
+                    
                     commit("edit", payload.index, res.data)
                     return {
                         success: true,
@@ -137,7 +136,7 @@ export default new Vuex.Store({
         },
 
         async deleteReward({ commit }, payload) {
-            console.log('payload', payload)
+            
             
             let url = `${api_endpoint}/rewards/${payload.id}` 
 
@@ -146,8 +145,7 @@ export default new Vuex.Store({
                 let res = await Axios.delete(url, headers)
 
                 if (res.status === 200) {
-                    console.log(payload.id)
-                    console.log("commit('edit')", payload.index, res.data)
+                    
                     commit("edit", payload.index, res.data)
                     return {
                         success: true,
