@@ -8,12 +8,12 @@
       <input type="date" v-model="date.end">
     </div>
 
-      <!-- <br>
+      <br>
         <button @click="sortByGet">Sort by Diamonds Get</button>
       <br>
       <br>
       <button @click="sortByEarn">Sort by Diamonds Earn</button>
-      <br> -->
+      <br>
     
     <div>
       <div>
@@ -26,7 +26,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>GET Diamonds</th>
-            <!-- <th>Date</th> -->
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ productHistories(index) }}</td>
-            <!-- <td>{{ dateGet(index) }}</td> -->
+            <td>{{ dateGet(index) }}</td>
           </tr>
         </tbody>
       </table>
@@ -53,7 +53,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>EARN Diamonds</th>
-            <!-- <th>Date</th> -->
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -62,7 +62,7 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ rewardHistories(index) }}</td>
-            <!-- <td>{{ dateEarn(index) }}</td> -->
+            <td>{{ dateEarn(index) }}</td>
           </tr>
         </tbody>
       </table>
@@ -80,30 +80,48 @@ import moment from 'moment'
 export default {
     data(){
         return{
-            users:[],
-            date:{
+          users:[],
+          date:{
               start:'',
               end:''
-            }
-           
+            },
+          
+          
         }
     },
     
     async created(){
         this.fetchUser()
         this.user = await AuthUser.getters.user
-        this.sortByGet()
-        this.sortByEarn()
-        
+        // this.arrayGG = this.sortG()
     },
 
     computed: {
-        sortByGet(){
+    //     sortArray() {
+
+    //     },
+    //     selectData() {
+    //       let selected = []
+    //       this.users[index].foreach((product) => {
+    //       d = moment(product.created_at).format('YYYY-MM-DD')
+    //       if(start <= d && end >= d){
+    //             console.log("-----")
+    //             console.log("SUM of GET : ", sum);
+    //             console.log('between start and end')
+    //             sum += product.diamond_point
+                
+    //         } 
+    //       })
+          
+    //     },
+        
+
+        sortByGet : function (){
           console.log("THIS USER : ", this.users );
           this.users.sort((a, b) => {
             return this.productHistories(b) - this.productHistories(a)})
         },
-        sortByEarn(){
+        sortByEarn : function (){
           this.users.sort((a, b) => {
             return this.rewardHistories(b) - this.rewardHistories(a)})
         }
@@ -120,8 +138,8 @@ export default {
                 }
                
             },
-        isDate(date) {
-          return date
+        getToday() {
+            return moment(new Date()).format("YYYY-MM-DD")
         },
 
         dateGet(index) {
@@ -153,6 +171,8 @@ export default {
           let d
           let start
           let end 
+          let arrayGet = []
+          this.arrayGG = []
           
           if(this.date.start == ''){
             start = 0
@@ -161,25 +181,35 @@ export default {
             start = moment(this.date.start).format('YYYY-MM-DD')
             end = moment(this.date.end).format('YYYY-MM-DD')
           }
-          console.log("--------------GET-------------");
-          console.log("Date start of GET :", start);
-          console.log("Date end of GET :", end);
+          // console.log("--------------GET-------------");
+          // console.log("Date start of GET :", start);
+          // console.log("Date end of GET :", end);
+
+    
             for(let j = 0; j < this.users[index].product_histories.length; j++ ){
                 d = moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD')
                 if(start <= d && end >= d){
-                    console.log("-----")
-                    console.log("USER of GET :", this.users[index].username);
-                    console.log("SUM of GET : ", sum);
-                    console.log('between start and end')
+                    // console.log("-----")
+                    // console.log("USER of GET :", this.users[index].username);
+                    // console.log("SUM of GET : ", sum);
+                    // console.log('between start and end')
                     sum += this.users[index].product_histories[j].diamond_point
-                    
                 } 
             // return new Intl.DateTimeFormat('en-GB', options).format(d) moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD');
-               
             }
+            arrayGet.push(this.users[index].username)
+            arrayGet.push(sum)
+            this.arrayGG = arrayGet
+            console.log("Array Get:", this.arrayGG);
             return sum
           
         },
+
+        // sortG(arrayG){
+        //     console.log("Array Get:", arrayG);
+        //     this.arrayGG = arrayG
+
+        // },
 
         dateEarn(index) {
             let d
@@ -195,7 +225,6 @@ export default {
           }
           
           for(let j = 0; j < this.users[index].reward_histories.length; j++ ){
-              console.log("lenght : ", this.users[index].product_histories.length)
               d = moment(this.users[index].reward_histories[j].created_at).format('YYYY-MM-DD')
               if(start <= d && end >= d){
                   return d 
@@ -218,16 +247,16 @@ export default {
               start = moment(this.date.start).format('YYYY-MM-DD')
               end = moment(this.date.end).format('YYYY-MM-DD')
             }
-            console.log("--------------EARN-------------");
-            console.log("Date start of EARN :", start);
-            console.log("Date end of EARN :", end);
+            // console.log("--------------EARN-------------");
+            // console.log("Date start of EARN :", start);
+            // console.log("Date end of EARN :", end);
             for(let j = 0; j < this.users[index].reward_histories.length; j++ ){
               d = moment(this.users[index].reward_histories[j].created_at).format('YYYY-MM-DD')
                 if(start <= d && end >= d){
-                    console.log("-----")
-                    console.log("USER of EARN :", this.users[index].username);
-                    console.log("SUM of EARN : ", sum);
-                    console.log('between start and end')
+                    // console.log("-----")
+                    // console.log("USER of EARN :", this.users[index].username);
+                    // console.log("SUM of EARN : ", sum);
+                    // console.log('between start and end')
                     sum += this.users[index].reward_histories[j].reward_point
                     
                 }
@@ -237,15 +266,21 @@ export default {
         },
 
         // sortByGet(){
-        //   console.log("THIS USER : ", this.users );
-        //   this.users.sort((a, b) => this.productHistories(b) - this.productHistories(a))
+        //   // let array = []
+        //   console.log("TESTTTTTTT");
+        //   console.log("AG : ", this.arrayGG);
+        //   // this.users.forEach((item, index) => {
+        //   //   array.push(this.productHistories(index))
+        //   // })
+          
+        //   this.arrayGG.sort((a, b) => {
+        //   return b[1] - a[1]
+        //     })
           
         // },
         // sortByEarn(){
         //   this.users.sort((a, b) => this.rewardHistories(b) - this.rewardHistories(a))
         // }
-
-
 
         
     }
