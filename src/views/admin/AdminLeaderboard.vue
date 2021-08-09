@@ -1,14 +1,17 @@
 <template>
     <div>
+        <!-- <show-leaderboard></show-leaderboard> -->
         <show-leaderboard></show-leaderboard>
     </div>
 </template>
 
 <script>
-import ShowLeaderboard from '@/components/ShowLeaderboard'
 import AuthUser from "@/store/AuthUser";
+import LeaderboardDate from '@/components/LeaderboardDate.vue';
+import ShowLeaderboard from '@/components/ShowLeaderboard.vue';
 export default {
     components: { 
+        LeaderboardDate,
         ShowLeaderboard
     },
 
