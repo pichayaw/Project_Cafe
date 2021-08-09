@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <div class="user" align="right">
-      <label for="">Username : {{ user.username }}and Diamonds :
+      <label for="">Username : {{ user.username }} | Diamonds :
         {{ user.diamond_point }}&nbsp;&nbsp;&nbsp;</label>
     </div>
     <div class="container">

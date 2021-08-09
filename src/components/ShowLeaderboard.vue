@@ -8,12 +8,17 @@
       <input type="date" v-model="date.end">
     </div>
 
+      <!-- <br>
+        <button @click="sortByGet">Sort by Diamonds Get</button>
+      <br>
+      <br>
+      <button @click="sortByEarn">Sort by Diamonds Earn</button>
+      <br> -->
+    
     <div>
-      <button >Sort by points used</button>
-      <button >Sort by points earned</button>
-    </div>
-
-    <div>
+      <div>
+        
+      </div>
       <table>
         <thead>
           <tr>
@@ -21,7 +26,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>GET Diamonds</th>
-            <th>Date</th>
+            <!-- <th>Date</th> -->
           </tr>
         </thead>
         <tbody>
@@ -30,15 +35,17 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ productHistories(index) }}</td>
-            <td>{{ user.product_histories }}</td>
             <!-- <td>{{ dateGet(index) }}</td> -->
-            <!-- <td>{{ dateFormater(user.created_at) }}</td> -->
           </tr>
         </tbody>
       </table>
     </div>
     <br>
+    <br>
     <div>
+      <div>
+        
+      </div>
       <table>
         <thead>
           <tr>
@@ -46,7 +53,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>EARN Diamonds</th>
-            <th>Date</th>
+            <!-- <th>Date</th> -->
           </tr>
         </thead>
         <tbody>
@@ -55,8 +62,7 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ rewardHistories(index) }}</td>
-            <td>{{ user.reward_histories }}</td>
-            <!-- <td>{{ dateFormater(user.created_at) }}</td> -->
+            <!-- <td>{{ dateEarn(index) }}</td> -->
           </tr>
         </tbody>
       </table>
@@ -69,6 +75,7 @@
 <script>
 import AuthUser from '@/store/AuthUser'
 import UserApi from '@/store/UserApi'
+import moment from 'moment'
 
 export default {
     data(){
@@ -85,7 +92,21 @@ export default {
     async created(){
         this.fetchUser()
         this.user = await AuthUser.getters.user
-        console.log();
+        this.sortByGet()
+        this.sortByEarn()
+        
+    },
+
+    computed: {
+        sortByGet(){
+          console.log("THIS USER : ", this.users );
+          this.users.sort((a, b) => {
+            return this.productHistories(b) - this.productHistories(a)})
+        },
+        sortByEarn(){
+          this.users.sort((a, b) => {
+            return this.rewardHistories(b) - this.rewardHistories(a)})
+        }
     },
 
     methods: {
@@ -99,54 +120,133 @@ export default {
                 }
                
             },
+        isDate(date) {
+          return date
+        },
 
         dateGet(index) {
-            for(let i = 0; i < this.users[index].product_histories.length; i++ ) {
-                let timestamp = this.users[index].product_histories[i].created_at
-                let date = new Date(timestamp)
-                let options = {
-                    year: 'numeric', month: 'numeric', day: 'numeric',
-                    timeZone: 'Asia/Bangkok'
-                };
-                return new Intl.DateTimeFormat('en-GB', options).format(date)
-            }
+            let d
+            let start
+            let end 
+          
+          if(this.date.start == ''){
+            start = 0
+            end = 0
+          }else{
+            start = moment(this.date.start).format('YYYY-MM-DD')
+            end = moment(this.date.end).format('YYYY-MM-DD')
+          }
+          
+          for(let j = 0; j < this.users[index].product_histories.length; j++ ){
+              // console.log("lenght : ", this.users[index].product_histories.length)
+              d = moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD')
+              if(start <= d && end >= d){
+                  return d 
+    
+              }                   
+          }
+          
         },
 
         productHistories(index) {
-            let sum = 0
+          let sum = 0
+          let d
+          let start
+          let end 
+          
+          if(this.date.start == ''){
+            start = 0
+            end = 0
+          }else{
+            start = moment(this.date.start).format('YYYY-MM-DD')
+            end = moment(this.date.end).format('YYYY-MM-DD')
+          }
+          console.log("--------------GET-------------");
+          console.log("Date start of GET :", start);
+          console.log("Date end of GET :", end);
             for(let j = 0; j < this.users[index].product_histories.length; j++ ){
-                // console.log("lenght : ", this.users[index].product_histories.length)
-                sum += this.users[index].product_histories[j].diamond_point
-                console.log("SUM : ", sum);
-                
+                d = moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD')
+                if(start <= d && end >= d){
+                    console.log("-----")
+                    console.log("USER of GET :", this.users[index].username);
+                    console.log("SUM of GET : ", sum);
+                    console.log('between start and end')
+                    sum += this.users[index].product_histories[j].diamond_point
+                    
+                } 
+            // return new Intl.DateTimeFormat('en-GB', options).format(d) moment(this.users[index].product_histories[j].created_at).format('YYYY-MM-DD');
+               
             }
             return sum
-                
+          
+        },
+
+        dateEarn(index) {
+            let d
+            let start
+            let end 
+          
+          if(this.date.start == ''){
+            start = 0
+            end = 0
+          }else{
+            start = moment(this.date.start).format('YYYY-MM-DD')
+            end = moment(this.date.end).format('YYYY-MM-DD')
+          }
+          
+          for(let j = 0; j < this.users[index].reward_histories.length; j++ ){
+              console.log("lenght : ", this.users[index].product_histories.length)
+              d = moment(this.users[index].reward_histories[j].created_at).format('YYYY-MM-DD')
+              if(start <= d && end >= d){
+                  return d 
+    
+              }                   
+          }
+          
         },
 
         rewardHistories(index) {
             let sum = 0
+            let d
+            let start
+            let end 
+            
+            if(this.date.start == ''){
+              start = 0
+              end = 0
+            }else{
+              start = moment(this.date.start).format('YYYY-MM-DD')
+              end = moment(this.date.end).format('YYYY-MM-DD')
+            }
+            console.log("--------------EARN-------------");
+            console.log("Date start of EARN :", start);
+            console.log("Date end of EARN :", end);
             for(let j = 0; j < this.users[index].reward_histories.length; j++ ){
-                // console.log("lenght : ", this.users[index].reward_histories.length)
-                sum += this.users[index].reward_histories[j].reward_point
-                console.log("SUM : ", sum);
-                
+              d = moment(this.users[index].reward_histories[j].created_at).format('YYYY-MM-DD')
+                if(start <= d && end >= d){
+                    console.log("-----")
+                    console.log("USER of EARN :", this.users[index].username);
+                    console.log("SUM of EARN : ", sum);
+                    console.log('between start and end')
+                    sum += this.users[index].reward_histories[j].reward_point
+                    
+                }
+                    
             }
             return sum
         },
 
-        dateFormater(timestamp) {
-            let date = new Date(timestamp)
-            let options = {
-                year: 'numeric', month: 'numeric', day: 'numeric',
-                timeZone: 'Asia/Bangkok'
-            };
-            return new Intl.DateTimeFormat('en-GB', options).format(date)
-        },
+        // sortByGet(){
+        //   console.log("THIS USER : ", this.users );
+        //   this.users.sort((a, b) => this.productHistories(b) - this.productHistories(a))
+          
+        // },
+        // sortByEarn(){
+        //   this.users.sort((a, b) => this.rewardHistories(b) - this.rewardHistories(a))
+        // }
 
 
 
-        
         
     }
 
