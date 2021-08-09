@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <show-leaderboard></show-leaderboard> -->
         <show-leaderboard></show-leaderboard>
     </div>
 </template>

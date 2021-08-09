@@ -110,7 +110,7 @@ export default new Vuex.Store({
                   else {
                         return {
                           success: false,
-                          message: "Diamonds ค่าน้อยกว่า 1 ไม่ได้"
+                          message: "Diamond can’t be less than 1 point."
                         }
                   }
                 

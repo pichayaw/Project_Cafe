@@ -127,11 +127,11 @@ export default
         {
             res.data.money += parseInt(money)
             let update = await Axios.put(api_endpoint + "/users/" + res.data.id ,res.data ,header)
-            return {status: "success" , message : "ขอบคุณที่เติมเงิน" , res : update}
+            return {status: "success" , message : "Thank for topping up." , res : update}
         }
         else
         {
-            return {status : "error" , message : "เงินติดลบอยู่อะ ดูดีๆ"}
+            return {status : "error" , message : "Negative balance"}
         }
     },
 
@@ -151,17 +151,14 @@ export default
                reward: res.data ,
                reward_point: res.data.diamonds
             }
-            console.log("body ",body);
-
             let updateStock = await Axios.put(api_endpoint + "/rewards/"+res.data.id , res.data , header)
             let updatePoint = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "แลกของสำเร็จ" , res : updateStock , me : updatePoint}
+            return {status: "success" , message : "Redeemed" , res : updateStock , me : updatePoint}
             
         }
         else{
-            console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -190,12 +187,11 @@ export default
 
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
-            console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -222,12 +218,12 @@ export default
             console.log("body ",body);
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
             console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -255,12 +251,12 @@ export default
 
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
             console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -289,12 +285,12 @@ export default
             
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
             console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },

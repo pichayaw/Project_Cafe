@@ -1,24 +1,21 @@
 <template>
-  <div>
+  <div class="leaderboard">
     <h1>Leaderboard</h1>
+
     <div>
-      <label for="start">date</label>
+      <br><label>date</label>
       <input type="date" v-model="date.start" />
       <input type="date" v-model="date.end" />
     </div>
-
     <br>
-      <button @click="sortByGet">Sort Diamonds Get</button>
-    <br>
-    <br>
-      <button @click="sortByEarn">Sort Diamonds Earn</button>
-    <br>
-
-    <div>
-      <table>
-        <thead>
+    <div class="container">
+      <table class="table table-striped table-hover" sticky-header="400px">
+        <thead class="bg-dark text-white">
           <tr>
-            <th>#</th>
+            <th colspan="6"><b-button variant="outline-light" @click="sortByGet">Sort by Diamonds received</b-button></th>
+          </tr>
+          <tr>
+            <th>No.</th>
             <th>Username</th>
             <th>Email</th>
             <th>Get Diamonds</th>
@@ -34,13 +31,16 @@
         </tbody>
       </table>
     </div>
-    <br />
-    <br />
-    <div>
-      <table>
-        <thead>
+    <br> 
+    <br>
+    <div class="container">
+      <table class="table table-striped table-hover" sticky-header="400px">
+        <thead class="bg-secondary text-white">
           <tr>
-            <th>#</th>
+            <th colspan="4"><b-button variant="outline-light" @click="sortByEarn">Sort by Diaminds spent</b-button></th>
+          </tr>
+          <tr>
+            <th>No.</th>
             <th>Username</th>
             <th>Email</th>
             <th>EARN Diamonds</th>
@@ -103,7 +103,6 @@ export default {
       user.product_histories.forEach((product) => {
         d = moment(product.created_at).format('YYYY-MM-DD');
         if (start <= d && end >= d) {
-          // console.log("Date",d);
           
         }
         console.log("Date",d);
@@ -119,7 +118,6 @@ export default {
       if (this.date.start == "") {
         start = 0
         end = 0
-        // (start = 0), (end = 0);
       } else {
         start = moment(this.date.start).format('YYYY-MM-DD');
         end = moment(this.date.end).format('YYYY-MM-DD');
@@ -161,7 +159,6 @@ export default {
       if (this.date.start == "") {
         start = 0
         end = 0
-        // (start = 0), (end = 0);
       } else {
         start = moment(this.date.start).format("YYYY-MM-DD");
         end = moment(this.date.end).format("YYYY-MM-DD");
@@ -190,4 +187,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.leaderboard{
+  h1{
+    padding-top: 20px;
+    border: solid#A1887F;
+    height: 90px;
+    background-color: #a1887f;
+    color: white;
+    letter-spacing: 3px;
+  }
+}
+</style>

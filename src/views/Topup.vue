@@ -53,7 +53,7 @@ export default {
     async plusMoney() {
       let res = await AuthUser.dispatch("topup", this.money);
       if (res) {
-        await this.$swal("เติมเงินสำเร็จ", "", "success");
+        await this.$swal("Transaction Successfully", "", "success");
         location.reload();
       }
     },

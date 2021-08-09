@@ -69,8 +69,7 @@ export default {
         if ( AuthUser.getters.id !== 2) {
             this.$swal("Restricted Area", `You have no permission, You aren't admin` , " warning")
             this.$router.push("/")
-        }
-        
+        }      
     },
 
     async created() {

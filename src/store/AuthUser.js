@@ -93,12 +93,9 @@ export default new Vuex.Store({
       async redeem({commit} ,item)
       {
           let res = await AuthService.redeem(item)
-          console.log("this is " ,res.me);
           if(res.status === "success")
           {
-            console.log("this is " ,res);
             commit('updateStock' , res.me)
-            console.log("this is " ,res.status);
             return res ;
           }  
           else
