@@ -45,7 +45,6 @@
 </template>
 
 <script>
-//import AuthService from "@/services/AuthService";
 import AuthUser from '@/store/AuthUser'
 export default {
   data() {
@@ -58,7 +57,6 @@ export default {
   },
   methods: {
     async login() {
-      //let res = await AuthService.login(this.from);
       let res = await AuthUser.dispatch('login' , this.from)
       if (res.success) {
         this.$swal("Login success", `Welcome, ${res.user.username}`, "success");

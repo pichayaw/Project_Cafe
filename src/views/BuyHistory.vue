@@ -22,7 +22,6 @@
         </thead>
         <tbody>
           <tr v-for="(history, index) in user.product_histories" :key="index">
-            <!--history obj ที่ดึงข้อมูลจากใน user.product_histories-> เป็น array ต้องดึงมาทีละตัว-->
             <td>{{ dateFormater(history.created_at) }}</td>
             <td>{{ getFood(history.food) }}</td>
             <td>{{ getBeverage(history.beverage) }}</td>
@@ -39,7 +38,7 @@
       <table class="table table-striped table-hover" sticky-header="400px">
         <thead class="bg-secondary text-white">
           <tr>
-            <th colspan="5">Rewards Histories</th>
+            <th colspan="3">Rewards Histories</th>
           </tr>
           <tr>
             <th>Date</th>
@@ -49,7 +48,6 @@
         </thead>
         <tbody>
           <tr v-for="(history1, index) in user.reward_histories" :key="index">
-            <!--history obj ที่ดึงข้อมูลจากใน user.product_histories-> เป็น array ต้องดึงมาทีละตัว-->
             <td>{{ dateFormater(history1.created_at) }}</td>
             <td>{{ getRewards(history1.reward) }}</td>
             <td>{{ history1.reward_point }}</td>
@@ -77,7 +75,6 @@ export default {
   async created() {
     this.user = await AuthUser.getters.user;
     await FoodStore.dispatch("fetchFood");
-    //FoodStore ไปเอาข้อมูล fetchFood ใน Food.js มา
     this.foods = FoodStore.getters.food;
     await MenuStore.dispatch("fetchMenu");
     this.beverages = MenuStore.getters.menu;
@@ -95,7 +92,6 @@ export default {
   methods: {
     getFood(id) {
       for (let i = 0; i < this.foods.length; i++) {
-        //วนลูปเพื่อนำ id ที่ได้ ไปหาเมนูอาหาร และแสดงเมนูอาหารที่ลูกค้าซื้อ
         if (this.foods[i].id === id) {
           return this.foods[i].menu;
         }

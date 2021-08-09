@@ -5,7 +5,6 @@
 </template>
 
 <script>
-//import AuthService from '@/services/AuthService'
 import AuthUser from '@/store/AuthUser'
 export default {
     mounted(){

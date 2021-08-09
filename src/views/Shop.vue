@@ -18,19 +18,28 @@
             <label v-if="water.hot_style != '-'" for=""
               >Hot {{ water.hot_style }}</label
             >
-&nbsp;&nbsp;&nbsp;<b-button variant="warning"  v-if="water.hot_style != '-'" @click="buyHot(water)">
+            &nbsp;&nbsp;&nbsp;<b-button
+              variant="warning"
+              v-if="water.hot_style != '-'"
+              @click="buyHot(water)"
+            >
               BUY</b-button
             ><br v-if="water.hot_style != '-'" />
             <label v-if="water.ice_style != '-'" for=""
               >Iced {{ water.ice_style }}</label
             >
-            &nbsp;&nbsp;&nbsp;<b-button variant="danger" v-if="water.ice_style != '-'" @click="buyIce(water)">
+            &nbsp;&nbsp;&nbsp;<b-button
+              variant="danger"
+              v-if="water.ice_style != '-'"
+              @click="buyIce(water)"
+            >
               BUY</b-button
             ><br v-if="water.ice_style != '-'" />
             <label v-if="water.blended_style != '-'" for=""
               >Blended {{ water.blended_style }}</label
             >
-            &nbsp;&nbsp;&nbsp;<b-button variant="info" 
+            &nbsp;&nbsp;&nbsp;<b-button
+              variant="info"
               v-if="water.blended_style != '-'"
               @click="buyBlended(water)"
             >
@@ -51,7 +60,8 @@
             ><br />
             <label for="">ราคา {{ kao.price }}</label
             ><br />
-            <b-button variant="primary"  @click="buyFood(kao)">BUY</b-button><br />
+            <b-button variant="primary" @click="buyFood(kao)">BUY</b-button
+            ><br />
           </div>
         </div>
       </div>
@@ -134,7 +144,6 @@ export default {
     },
     async buyIce(water) {
       console.log(1);
-      // console.log(water.hot_style);
       if (this.user.money >= water.ice_style && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
@@ -231,46 +240,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shop{
+.shop {
   .user {
-  padding-top: 20px;
-  border: solid#A1887F;
-  height: 70px;
-  background-color: #a1887f;
-  color: white;
-  font-size: 1.1rem;
-}
-h2{
-      margin: 40px;
-      border-bottom: 2px solid gray;
-      padding: 20px;
-      letter-spacing: 3px;
-      font-weight: bold;
-      font-size: 2em;
-      color: #737f8b;
-    }
-.shop-container {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-
-  .beverage {
-    padding-top: 20px;
-    border: solid#BCAAA4;
-    background-color: #BCAAA4;
-    color: white;
-    font-size: 1.1rem;
-    margin: 20px;
-  }
-  .food{
     padding-top: 20px;
     border: solid#A1887F;
-    background-color:#A1887F;
+    height: 70px;
+    background-color: #a1887f;
     color: white;
     font-size: 1.1rem;
-    margin: 20px;
+  }
+  h2 {
+    margin: 40px;
+    border-bottom: 2px solid gray;
+    padding: 20px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 2em;
+    color: #737f8b;
+  }
+  .shop-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+
+    .beverage {
+      padding-top: 20px;
+      border: solid#BCAAA4;
+      background-color: #bcaaa4;
+      color: white;
+      font-size: 1.1rem;
+      margin: 20px;
+      height: 190px;
+    }
+    .food {
+      padding-top: 20px;
+      border: solid#A1887F;
+      background-color: #a1887f;
+      color: white;
+      font-size: 1.1rem;
+      margin: 20px;
+      height: 150px;
+    }
   }
 }
-}
-
 </style>

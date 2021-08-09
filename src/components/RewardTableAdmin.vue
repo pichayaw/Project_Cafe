@@ -38,7 +38,6 @@ export default {
     data() {
         return {
             rewards: [],
-            // editIndex: -1,
                 form : {
                     id: '',
                     menu: '',
@@ -62,8 +61,6 @@ export default {
             this.rewards = RewardApiStore.getters.rewards
             console.log(this.form)
         },
-
-        
 
     }
 

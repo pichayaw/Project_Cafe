@@ -10,13 +10,6 @@ let auth_key = 'auth_cafe'
 let auth = JSON.parse(localStorage.getItem(auth_key))
 let api_endpoint = process.env.VUE_APP_PROJECT_CAFE_ENDPOINT || "http://localhost:1337"
 
-// const initialState = {
-//     user : auth ? auth.user:  "",
-//     jwt : auth ? auth.jwt:"",
-//     isAuthen: auth ? true : false
-// }
-
-
 export default new Vuex.Store({
   state: {
     user : auth ? AuthService.refresh() :  "",
@@ -72,7 +65,6 @@ export default new Vuex.Store({
         {
             commit('loginSuccess' , body)
         }
-        //console.log(res.message)
         return res
       },
 
@@ -117,15 +109,10 @@ export default new Vuex.Store({
 
       async buyHot({commit} , water)
       {
-          console.log(2);
           let res = await AuthService.buyHot(water)
-          console.log("this is " ,res.me);
-          console.log("this is " ,res.status);
           if(res.status === "success")
           {
-            console.log("this is " ,res.status);
             commit('update' , res.me)
-            //console.log("this is " ,res.status);
             return res ;
           }  
           else
@@ -136,15 +123,10 @@ export default new Vuex.Store({
 
       async buyIce({commit} , water)
       {
-          console.log(2);
           let res = await AuthService.buyIce(water)
-          console.log("this is " ,res.me);
-          console.log("this is " ,res.status);
           if(res.status === "success")
           {
-            console.log("this is " ,res.status);
             commit('update' , res.me)
-            //console.log("this is " ,res.status);
             return res ;
           }  
           else
@@ -155,15 +137,10 @@ export default new Vuex.Store({
 
       async buyBlended({commit} , water)
       {
-          console.log(2);
           let res = await AuthService.buyBlended(water)
-          console.log("this is " ,res.me);
-          console.log("this is " ,res.status);
           if(res.status === "success")
           {
-            console.log("this is " ,res.status);
             commit('update' , res.me)
-            //console.log("this is " ,res.status);
             return res ;
           }  
           else
@@ -174,15 +151,10 @@ export default new Vuex.Store({
 
       async buyFood({commit} , kao)
       {
-        console.log(2);
         let res = await AuthService.buyFood(kao)
-        console.log("this is " ,res.me);
-        console.log("this is " ,res.status);
         if(res.status === "success")
         {
-          console.log("this is " ,res.status);
           commit('update' , res.me)
-          //console.log("this is " ,res.status);
           return res ;
         }  
         else

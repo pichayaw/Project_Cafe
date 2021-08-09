@@ -35,8 +35,6 @@ export default new Vuex.Store({
             let url = `${api_endpoint}/rewards`
             let headers = AuthService.getApiHeader()
             let res = await Axios.get(url, headers)
-            //(api_endpoint + "/rewards") 
-
             commit('fetch', { res })
         },
 
@@ -49,7 +47,6 @@ export default new Vuex.Store({
                 diamonds: payload.diamonds,
                 Stock: payload.Stock
             }
-            // commit("add", payload)
             try {
                 let headers = AuthService.getApiHeader()
                 let res = await Axios.post(url, body, headers)
