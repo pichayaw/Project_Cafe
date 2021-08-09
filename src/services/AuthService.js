@@ -194,21 +194,17 @@ export default
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.hot_style)
         {
             me.data.money -= res.data.hot_style 
-            me.data.diamond_point += Math.floor(res.data.hot_style  / 25)
+            me.data.diamond_point += Math.floor(res.data.hot_style  / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                beverage: res.data ,
-               diamond_point: Math.floor(res.data.hot_style / 25),
-               price : res.data.hot_style
+               diamond_point: Math.floor(res.data.hot_style / 20),
+               price : res.data.hot_style ,
+               type :  "hot style "
             }
             console.log("body ",body);
             
@@ -235,21 +231,17 @@ export default
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.ice_style)
         {
             me.data.money -= res.data.ice_style
-            me.data.diamond_point += Math.floor(res.data.ice_style / 25)
+            me.data.diamond_point += Math.floor(res.data.ice_style / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                beverage: res.data ,
-               diamond_point: Math.floor(res.data.ice_style / 25) ,
-               price : res.data.ice_style
+               diamond_point: Math.floor(res.data.ice_style / 20) ,
+               price : res.data.ice_style ,
+               type :  "ice style"
             }
             console.log("body ",body);
             
@@ -276,21 +268,17 @@ export default
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.blended_style)
         {
             me.data.money -= res.data.blended_style
-            me.data.diamond_point += Math.floor(res.data.blended_style / 25)
+            me.data.diamond_point += Math.floor(res.data.blended_style / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                beverage: res.data ,
-               diamond_point: Math.floor(res.data.blended_style / 25) ,
-               price : res.data.blended_style
+               diamond_point: Math.floor(res.data.blended_style / 20) ,
+               price : res.data.blended_style,
+               type :  "blended style"
             }
             console.log("body ",body);
             
@@ -317,21 +305,18 @@ export default
         let res = await Axios.get(api_endpoint + "/foods/"+kao.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.hot_style);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.money >= res.data.price)
         {
             me.data.money -= res.data.price
-            me.data.diamond_point += Math.floor(res.data.price / 25)
+            me.data.diamond_point += Math.floor(res.data.price / 20)
             let url = `${api_endpoint}/product-histories`
             let body ={
                user: me.data ,
                food: res.data ,
-               diamond_point: Math.floor(res.data.price / 25) ,
-               price : res.data.price
+               diamond_point: Math.floor(res.data.price / 20) ,
+               price : res.data.price, 
+               type : "-"
+               
             }
             console.log("body ",body);
             

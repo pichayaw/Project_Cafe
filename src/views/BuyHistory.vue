@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <div class="user" align="right">
-      <label for="">Username : {{ user.username }} | Diamonds :
+      <label for="">Username : {{ user.username }} and Diamonds :
         {{ user.diamond_point }}&nbsp;&nbsp;&nbsp;</label>
     </div>
     <div class="container">
@@ -9,12 +9,13 @@
       <table class="table table-striped table-hover" sticky-header="400px">
         <thead class="bg-dark text-white">
           <tr>
-            <th colspan="5">Menu Histories</th>
+            <th colspan="6">Menu Histories</th>
           </tr>
           <tr>
             <th>Date</th>
             <th>Food</th>
             <th>Beverage</th>
+            <th>Type</th>
             <th>Price</th>
             <th>Diamonds</th>
           </tr>
@@ -25,6 +26,7 @@
             <td>{{ dateFormater(history.created_at) }}</td>
             <td>{{ getFood(history.food) }}</td>
             <td>{{ getBeverage(history.beverage) }}</td>
+            <td>{{ history.type}}</td>
             <td>{{ history.price }}</td>
             <td>{{ history.diamond_point }}</td>
           </tr>
@@ -83,6 +85,13 @@ export default {
     this.rewards = RewardStore.getters.rewards;
     console.log(this.rewards);
   },
+  mounted()
+    {
+        if (!this.isAuthen()) {
+            this.$swal("ห้ามเข้า", `ไป login ซะ`, "warning");
+            this.$router.push("/");
+        }
+    },
   methods: {
     getFood(id) {
       for (let i = 0; i < this.foods.length; i++) {
@@ -122,6 +131,10 @@ export default {
         timeZone: "Asia/Bangkok",
       };
       return new Intl.DateTimeFormat("en-GB", options).format(date);
+    },
+
+    isAuthen() {
+      return AuthUser.getters.isAuthen;
     },
   },
 };
