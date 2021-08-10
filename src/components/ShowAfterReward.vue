@@ -2,8 +2,9 @@
   <div class="getreward">
     <div class="user" align="right">
       <label for=""
-        >Username : {{ user.username }} and Diamonds :
-        {{ user.diamond_point }}&nbsp;&nbsp;&nbsp;</label>
+        >Username : {{ user.username }} , Diamonds :
+        {{ user.diamond_point }} and Balance :
+        {{ user.money }}&nbsp;&nbsp;&nbsp;</label>
     </div>
 
     <h1>REWARDS</h1>
@@ -46,7 +47,7 @@ export default {
   },
   mounted() {
     if (!this.isAuthen()) {
-      this.$swal("ห้ามเข้า", `ไป login ซะ`, "warning");
+      this.$swal("Please Login before using this feature", "warning");
       this.$router.push("/");
     }
   },
@@ -65,31 +66,32 @@ export default {
       ) {
         if (this.user.id !== 2) {
           swal({
-            title: "ยืนยัน",
-            text: `คุณจะแลก ${item.menu} หรือไม่`,
+            title: "Confirm",
+            text: `Would you like to redeem your ${item.menu}?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
             if (willRedeem) {
-              swal("แลกของเสร็จสิ้น", {
+              await swal("Redeemed", {
                 icon: "success",
               });
               await AuthUser.dispatch("redeem", item);
-              this.fetchRewards();
+              location.reload()
+              // this.fetchRewards();
             } else {
-              swal("ยกเลิกแล้ว");
+              swal("Canceled");
             }
           });
         } else {
-          await this.$swal("ไม่สามารถแลกได้", "", "warning");
+          await this.$swal("Can not be redeemed.", "", "warning");
         }
       } else if (this.user.id === 2) {
-        await this.$swal("ท่านเป็น ADMIN แลกไม่ได้", "", "warning");
+        await this.$swal("can’t redeem becuase you are admin", "", "warning");
       } else if (item.Stock === 0) {
-        await this.$swal(`${item.menu} หมดแล้ว แลกไม่ได้`, "", "warning");
+        await this.$swal(`${item.menu} Out of stock`, "", "warning");
       } else {
-        await this.$swal("Diamond ไม่พอ", "", "warning");
+        await this.$swal("Not enough diamond.", "", "warning");
       }
     },
 

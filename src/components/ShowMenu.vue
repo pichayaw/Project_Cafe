@@ -142,12 +142,10 @@ export default{
       async fetchInfo(){
         await MenuApiStore.dispatch("fetchMenu")
         this.beverage = MenuApiStore.getters.menu
-        // console.log(this.beverage);
       },
       async fetchFood(){
         await FoodApiStore.dispatch("fetchFood")
         this.food = FoodApiStore.getters.food
-        // console.log(this.food);
       }
       
   }

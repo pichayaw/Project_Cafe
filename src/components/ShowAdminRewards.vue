@@ -53,9 +53,6 @@ export default {
         font-variant: small-caps;
         
     }
-    }
-  
-    
-    
+    }    
 }
 </style>

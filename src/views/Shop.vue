@@ -16,21 +16,30 @@
             <label class="Big mb-3" for=""> {{ water.menu }}</label
             ><br />
             <label v-if="water.hot_style != '-'" for=""
-              >Hot {{ water.hot_style }}</label
+              >Hot : {{ water.hot_style }} Baht</label
             >
-&nbsp;&nbsp;&nbsp;<b-button  variant="danger"  v-if="water.hot_style != '-'" @click="buyHot(water)">
+            &nbsp;&nbsp;&nbsp;<b-button
+              variant="danger"
+              v-if="water.hot_style != '-'"
+              @click="buyHot(water)"
+            >
               BUY</b-button
             ><br v-if="water.hot_style != '-'" />
             <label v-if="water.ice_style != '-'" for=""
-              >Iced {{ water.ice_style }}</label
+              >Iced : {{ water.ice_style }} Baht</label
             >
-            &nbsp;&nbsp;&nbsp;<b-button variant="info" v-if="water.ice_style != '-'" @click="buyIce(water)">
+            &nbsp;&nbsp;&nbsp;<b-button
+              variant="info"
+              v-if="water.ice_style != '-'"
+              @click="buyIce(water)"
+            >
               BUY</b-button
             ><br v-if="water.ice_style != '-'" />
             <label v-if="water.blended_style != '-'" for=""
-              >Blended {{ water.blended_style }}</label
+              >Blended : {{ water.blended_style }} Baht</label
             >
-            &nbsp;&nbsp;&nbsp;<b-button class="mb-3" variant="warning" 
+            &nbsp;&nbsp;&nbsp;<b-button
+              variant="warning"
               v-if="water.blended_style != '-'"
               @click="buyBlended(water)"
             >
@@ -49,9 +58,10 @@
             <label for="">Menu :&nbsp;&nbsp; </label>
             <label for=""> {{ kao.menu }}</label
             ><br />
-            <label for="">ราคา {{ kao.price }}</label
+            <label for="">Price : {{ kao.price }} Baht</label
             ><br />
-            <b-button variant="primary"  @click="buyFood(kao)">BUY</b-button><br />
+            <b-button variant="primary" @click="buyFood(kao)">BUY</b-button
+            ><br />
           </div>
         </div>
       </div>
@@ -78,12 +88,11 @@ export default {
     this.fetchFood();
 
     if (!this.isAuthen()) {
-      this.$swal("ห้ามเข้า", `ไป login ซะ`, "warning");
+      this.$swal("Please Login before using this feature", "warning");
       this.$router.push("/");
     } else if (this.user.id === 2) {
       this.$swal(
-        "ห้ามเข้า คุณเป็น ADMIN",
-        `กรุณาสร้างบัญชี user เพื่อซื้อของ`,
+        "You’re not allow to purchase, as admin please create a new user to access this feature",
         "warning"
       );
       this.$router.push("/");
@@ -107,29 +116,29 @@ export default {
       if (this.user.money >= water.hot_style && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
-            title: "ยืนยัน",
-            text: `คุณจะซื้อ ${water.menu} แบบร้อนหรือไม่`,
+            title: "Confirm",
+            text: `Would you like to buy hot ${water.menu} ?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
             if (willRedeem) {
-              swal("ซื้อเสร็จสิ้น", {
+              await swal("Successful", {
                 icon: "success",
               });
               await AuthUser.dispatch("buyHot", water);
               location.reload();
             } else {
-              swal("ยกเลิกแล้ว");
+              swal("Canceled");
             }
           });
         } else {
-          await this.$swal("ไม่สามารถแลกได้", "", "warning");
+          await this.$swal("Can not be redeemed.", "", "warning");
         }
       } else if (this.user.id === 2) {
-        await this.$swal("คุณเป็น admin ซื้อของไม่ได้", "", "warning");
+        await this.$swal("can’t purchase becuase you are admin", "", "warning");
       } else {
-        await this.$swal("ตังไม่พอ", "", "warning");
+        await this.$swal("Not enough money.", "", "warning");
       }
     },
     async buyIce(water) {
@@ -138,58 +147,58 @@ export default {
       if (this.user.money >= water.ice_style && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
-            title: "ยืนยัน",
-            text: `คุณจะซื้อ ${water.menu} แบบเย็นหรือไม่`,
+            title: "Confirm",
+            text: `Would you like to buy iced ${water.menu} ?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
             if (willRedeem) {
-              swal("ซื้อเสร็จสิ้น", {
+              await swal("Successful", {
                 icon: "success",
               });
               await AuthUser.dispatch("buyIce", water);
               location.reload();
             } else {
-              swal("ยกเลิกแล้ว");
+              swal("Canceled");
             }
           });
         } else {
-          await this.$swal("ไม่สามารถแลกได้", "", "warning");
+          await this.$swal("Can not be redeemed.", "", "warning");
         }
       } else if (this.user.id === 2) {
-        await this.$swal("คุณเป็น admin ซื้อของไม่ได้", "", "warning");
+        await this.$swal("can’t purchase becuase you are admin", "", "warning");
       } else {
-        await this.$swal("ตังไม่พอ", "", "warning");
+        await this.$swal("Not enough money.", "", "warning");
       }
     },
     async buyBlended(water) {
       if (this.user.money >= water.blended_style && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
-            title: "ยืนยัน",
-            text: `คุณจะซื้อ ${water.menu} แบบปั่นหรือไม่`,
+            title: "Confirm",
+            text: `Would you like to buy blened ${water.menu} ?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
             if (willRedeem) {
-              swal("ซื้อเสร็จสิ้น", {
+              await swal("Successful", {
                 icon: "success",
               });
               await AuthUser.dispatch("buyBlended", water);
               location.reload();
             } else {
-              swal("ยกเลิกแล้ว");
+              swal("Canceled");
             }
           });
         } else {
-          await this.$swal("ไม่สามารถแลกได้", "", "warning");
+          await this.$swal("Can not be redeemed.", "", "warning");
         }
       } else if (this.user.id === 2) {
-        await this.$swal("คุณเป็น admin ซื้อของไม่ได้", "", "warning");
+        await this.$swal("can’t purchase becuase you are admin", "", "warning");
       } else {
-        await this.$swal("ตังไม่พอ", "", "warning");
+        await this.$swal("Not enough money.", "", "warning");
       }
     },
 
@@ -197,29 +206,29 @@ export default {
       if (this.user.money >= food.price && this.user.id !== 2) {
         if (this.user.id !== 2) {
           swal({
-            title: "ยืนยัน",
-            text: `คุณจะซื้อ ${food.menu} หรือไม่`,
+            title: "Confirm",
+            text: `Would you like to buy ${food.menu} ?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
             if (willRedeem) {
-              swal("ซื้อเสร็จสิ้น", {
+              await swal("Successful", {
                 icon: "success",
               });
               await AuthUser.dispatch("buyFood", food);
               location.reload();
             } else {
-              swal("ยกเลิกแล้ว");
+              swal("Canceled");
             }
           });
         } else {
-          await this.$swal("ไม่สามารถแลกได้", "", "warning");
+          await this.$swal("Can not be redeemed.", "", "warning");
         }
       } else if (this.user.id === 2) {
-        await this.$swal("คุณเป็น admin ซื้อของไม่ได้", "", "warning");
+        await this.$swal("You’re not allow to purchase, as admin please create a new user to access this feature", "", "warning");
       } else {
-        await this.$swal("ตังไม่พอ", "", "warning");
+        await this.$swal("Not enough money.", "", "warning");
       }
     },
 
@@ -231,49 +240,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shop{
+.shop {
   .user {
-  padding-top: 20px;
-  border: solid#A1887F;
-  height: 70px;
-  background-color: #a1887f;
-  color: white;
-  font-size: 1.1rem;
-}
-h2{
-      margin: 40px;
-      border-bottom: 2px solid gray;
-      padding: 20px;
-      letter-spacing: 3px;
-      font-weight: bold;
-      font-size: 2em;
-      color: #737f8b;
-    }
-.shop-container {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-
-  .beverage {
-    padding-top: 20px;
-    border: solid#BCAAA4;
-    background-color: #BCAAA4;
-    color: white;
-    font-size: 1.1rem;
-    margin: 20px;
-  }
-  .food{
     padding-top: 20px;
     border: solid#A1887F;
-    background-color:#A1887F;
+    height: 70px;
+    background-color: #a1887f;
     color: white;
     font-size: 1.1rem;
-    margin: 20px;
+  }
+  h2 {
+    margin: 40px;
+    border-bottom: 2px solid gray;
+    padding: 20px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 2em;
+    color: #737f8b;
+  }
+  .shop-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+
+    .beverage {
+      padding-top: 20px;
+      border: solid#BCAAA4;
+      background-color: #bcaaa4;
+      color: white;
+      font-size: 1.1rem;
+      margin: 20px;
+      height: 190px;
+    }
+    .food {
+      padding-top: 20px;
+      border: solid#A1887F;
+      background-color: #a1887f;
+      color: white;
+      font-size: 1.1rem;
+      margin: 20px;
+      height: 150px;
+    }
   }
 }
-.Big{
-  font-size: 24px;
-}
-}
-
 </style>

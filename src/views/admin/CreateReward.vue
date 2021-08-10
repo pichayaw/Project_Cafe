@@ -17,11 +17,8 @@ export default {
             console.log("deep",AuthUser.getters.user.username)
             this.$swal("Restricted Area", `You have no permission, You aren't admin` , " warning")
             this.$router.push("/")
-        }
-        
+        }        
     }
-
-
 }
 </script>
 

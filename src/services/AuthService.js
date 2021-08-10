@@ -23,7 +23,6 @@ export default
 
     getApiHeader()
     {
-        //ใช้สำหรับเข้าถึง api ตาม role ex. user,addmin -> delete,add data
         let jwt = JSON.parse(localStorage.getItem('auth_cafe')).jwt
         if (jwt !== ''){
             return{
@@ -36,7 +35,6 @@ export default
 
     async login ({email , password})
     {
-        // call api post/auth/local
         try{
             let url = api_endpoint + "/auth/local" 
             let body = {
@@ -48,7 +46,6 @@ export default
             
             if (res.status === 200)
             {
-               
                 localStorage.setItem(auth_key , JSON.stringify(res.data))
                 this.jwt = res.data.jwt
                 return {
@@ -65,7 +62,7 @@ export default
             
         } catch(e){
             if (e.response.status === 400){
-                
+            
                 return{
                     success : false ,
                     message : e.response.data.message[0].messages[0].message
@@ -123,35 +120,27 @@ export default
 
     async topup(money)
     {
-        
         let header = this.getApiHeader()
-        
-        //let id = this.user.id
         let id = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        
         let res = await Axios.get(api_endpoint + "/users/"+id , header)
         if(money > 0)
         {
             res.data.money += parseInt(money)
             let update = await Axios.put(api_endpoint + "/users/" + res.data.id ,res.data ,header)
-            return {status: "success" , message : "ขอบคุณที่เติมเงิน" , res : update}
+            return {status: "success" , message : "Thank for topping up." , res : update}
         }
         else
         {
-            return {status : "error" , message : "เงินติดลบอยู่อะ ดูดีๆ"}
+            return {status : "error" , message : "Negative balance"}
         }
     },
 
     async redeem(item)
     {
         let header = this.getApiHeader()
-        
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        
         let res = await Axios.get(api_endpoint + "/rewards/"+item.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
-
-        
         if (me.data.diamond_point >= res.data.diamonds && res.data.Stock > 0)
         {
             res.data.Stock -= 1
@@ -162,18 +151,14 @@ export default
                reward: res.data ,
                reward_point: res.data.diamonds
             }
-            
-            
-            
             let updateStock = await Axios.put(api_endpoint + "/rewards/"+res.data.id , res.data , header)
             let updatePoint = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "แลกของสำเร็จ" , res : updateStock , me : updatePoint}
+            return {status: "success" , message : "Redeemed" , res : updateStock , me : updatePoint}
             
         }
         else{
-            
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -182,9 +167,7 @@ export default
     async buyHot(water)
     {
         let header = this.getApiHeader()
-       
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -203,12 +186,11 @@ export default
             
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
-            
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -216,9 +198,7 @@ export default
     async buyIce(water)
     {
         let header = this.getApiHeader()
-        
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -239,7 +219,7 @@ export default
             
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
@@ -252,9 +232,7 @@ export default
     async buyBlended(water)
     {
         let header = this.getApiHeader()
-        
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -275,7 +253,7 @@ export default
             
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
@@ -308,11 +286,9 @@ export default
                
             }
             
-            
-           
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
