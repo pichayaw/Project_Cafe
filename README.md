@@ -1,3 +1,10 @@
+# announce
+
+user  ที่ชื่อ Nuttaphong ที่ push ข้อมูลขึ้น git ในโปรเจคนี้ กับ user ที่ชื่อ iSerlord เป็นคนเดียวกันครับ
+เพียงแต่ว่า ตอนที่ขณะทำโปรเจคนี้ iSerlord ได้ทำการเปลี่ยน config username เป็น Nuttaphong
+เป็นเหตุทำให้เวลา push ข้อมูลขึ้น git กลายเป็นชื่อ Nuttaphong แทนที่จะเป็น iSerlord 
+จึงแจ้งให้ทราบครับ
+
 # project-cafe
 
 ## Project setup
@@ -18,7 +25,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-# Project_Cafe
+
 - - -
 - - -
 ## Function ของร้าน CS cafe
