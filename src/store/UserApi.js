@@ -34,10 +34,6 @@ export default new Vuex.Store({
             commit('fetch', { res })
         },
 
-        
-
-
-
     },
     
 

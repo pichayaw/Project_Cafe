@@ -24,7 +24,6 @@ export default new Vuex.Store({
 
   actions: {
     async fetchFood({ commit }) {
-      //let headers = AuthService.getApiHeader()
       let res = await Axios.get(api_endpoint + "/foods")
       commit("fetch", res)
     }

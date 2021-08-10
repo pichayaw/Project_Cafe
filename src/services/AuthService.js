@@ -23,7 +23,6 @@ export default
 
     getApiHeader()
     {
-        //ใช้สำหรับเข้าถึง api ตาม role ex. user,addmin -> delete,add data
         let jwt = JSON.parse(localStorage.getItem('auth_cafe')).jwt
         if (jwt !== ''){
             return{
@@ -36,7 +35,6 @@ export default
 
     async login ({email , password})
     {
-        // call api post/auth/local
         try{
             let url = api_endpoint + "/auth/local" 
             let body = {
@@ -48,7 +46,6 @@ export default
             console.log(2)
             if (res.status === 200)
             {
-                //console.log(res.data)
                 localStorage.setItem(auth_key , JSON.stringify(res.data))
                 this.jwt = res.data.jwt
                 return {
@@ -65,7 +62,7 @@ export default
             
         } catch(e){
             if (e.response.status === 400){
-                //console.log(e.response.data.message[0].messages[0].message)
+            
                 return{
                     success : false ,
                     message : e.response.data.message[0].messages[0].message
@@ -123,40 +120,27 @@ export default
 
     async topup(money)
     {
-        console.log(this.jwt);
         let header = this.getApiHeader()
-        console.log(header);
-        //let id = this.user.id
         let id = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        console.log(id);
         let res = await Axios.get(api_endpoint + "/users/"+id , header)
         if(money > 0)
         {
             res.data.money += parseInt(money)
             let update = await Axios.put(api_endpoint + "/users/" + res.data.id ,res.data ,header)
-            return {status: "success" , message : "ขอบคุณที่เติมเงิน" , res : update}
+            return {status: "success" , message : "Thank for topping up." , res : update}
         }
         else
         {
-            return {status : "error" , message : "เงินติดลบอยู่อะ ดูดีๆ"}
+            return {status : "error" , message : "Negative balance"}
         }
     },
 
     async redeem(item)
     {
         let header = this.getApiHeader()
-        console.log(header);
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        // console.log("id" ,item.id);
-        // console.log(typeof idUser);
         let res = await Axios.get(api_endpoint + "/rewards/"+item.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
-
-        // console.log("res" ,res);
-        // console.log("userDiamond", me.data.diamond_point)
-        // console.log("resDiamond" ,res.data.diamonds);
-        // console.log("userNAME", me.data.id)
-        // console.log("REWard" ,res.data.diamonds);
         if (me.data.diamond_point >= res.data.diamonds && res.data.Stock > 0)
         {
             res.data.Stock -= 1
@@ -167,18 +151,14 @@ export default
                reward: res.data ,
                reward_point: res.data.diamonds
             }
-            console.log("body ",body);
-            
-            //console.log("2",eiei);
             let updateStock = await Axios.put(api_endpoint + "/rewards/"+res.data.id , res.data , header)
             let updatePoint = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "แลกของสำเร็จ" , res : updateStock , me : updatePoint}
+            return {status: "success" , message : "Redeemed" , res : updateStock , me : updatePoint}
             
         }
         else{
-            console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -187,10 +167,7 @@ export default
     async buyHot(water)
     {
         let header = this.getApiHeader()
-        //console.log(header);
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        //console.log("id" ,water.id);
-        //console.log(typeof idUser);
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -207,16 +184,14 @@ export default
                type :  "hot style "
             }
             console.log("body ",body);
-            
-            //console.log("2",eiei);
+
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
-            console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -224,10 +199,7 @@ export default
     async buyIce(water)
     {
         let header = this.getApiHeader()
-        //console.log(header);
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        //console.log("id" ,water.id);
-        //console.log(typeof idUser);
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -244,16 +216,14 @@ export default
                type :  "ice style"
             }
             console.log("body ",body);
-            
-            //console.log("2",eiei);
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
             console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -261,10 +231,7 @@ export default
     async buyBlended(water)
     {
         let header = this.getApiHeader()
-        //console.log(header);
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        //console.log("id" ,water.id);
-        //console.log(typeof idUser);
         let res = await Axios.get(api_endpoint + "/beverages/"+water.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -281,16 +248,15 @@ export default
                type :  "blended style"
             }
             console.log("body ",body);
-            
-            //console.log("2",eiei);
+
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
             console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },
@@ -298,10 +264,7 @@ export default
     async buyFood(kao)
     {
         let header = this.getApiHeader()
-        //console.log(header);
         let idUser = JSON.parse(localStorage.getItem('auth_cafe')).user.id
-        //console.log("id" ,water.id);
-        //console.log(typeof idUser);
         let res = await Axios.get(api_endpoint + "/foods/"+kao.id , header)
         let me = await Axios.get(api_endpoint + "/users/"+idUser , header)
 
@@ -320,15 +283,14 @@ export default
             }
             console.log("body ",body);
             
-            //console.log("2",eiei);
             let updateMoney = await Axios.put(api_endpoint + "/users/"+me.data.id , me.data , header)
             await Axios.post(url , body , header)
-            return {status: "success" , message : "ซื้อสำเร็จ"  , me : updateMoney}
+            return {status: "success" , message : "Purchased"  , me : updateMoney}
 
         }
         else{
             console.log("shit555");
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Can not redeem"}
         }
         
     },

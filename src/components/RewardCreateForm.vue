@@ -3,7 +3,6 @@
         <div class="head">
         <h1><br> Add New Reward</h1><br>
         </div>
-        <!-- <form @submit.prevent="addReward"> type="submit"-->
         <div class="input" align=center>
         <b-card
           img-src="@/assets/reward2.jpg"
@@ -68,7 +67,7 @@ export default {
         async addReward() {
             let payload = {
                 menu: this.form.menu,
-                diamonds: this.form.diamonds, //parseInt(this.form.diamonds, 10)
+                diamonds: this.form.diamonds,
                 Stock: this.form.Stock
             }
 

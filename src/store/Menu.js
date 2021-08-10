@@ -19,7 +19,6 @@ export default new Vuex.Store({
     fetch(state , res)
     {
       state.data = res.data
-      // console.log(state.data);
     }
   },
 
@@ -27,7 +26,6 @@ export default new Vuex.Store({
     async fetchMenu({commit})
     {
       let res = await Axios.get(api_endpoint + "/beverages")
-      // console.log(res.data);
       commit("fetch" , res)
     }
   },
