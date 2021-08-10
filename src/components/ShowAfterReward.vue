@@ -68,7 +68,7 @@ export default {
           swal({
             title: "Confirm",
             text: `Would you like to redeem your ${item.menu}?`,
-            icon: "warning",
+            icon: "success",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
@@ -78,7 +78,6 @@ export default {
               });
               await AuthUser.dispatch("redeem", item);
               location.reload()
-              // this.fetchRewards();
             } else {
               swal("Canceled");
             }
