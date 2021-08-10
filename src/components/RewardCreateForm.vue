@@ -72,11 +72,16 @@ export default {
             }
 
             console.log(payload)
-            let res = await RewardApiStore.dispatch("addReward", payload)
-            console.log(res)
-            if (res.success && this.form.menu != "") {
-                this.clearForm()
-                this.$router.push("/admin/rewards")
+            if (this.form.menu != "") {
+                let res = await RewardApiStore.dispatch("addReward", payload)
+                console.log(res)
+                if (res.success) {
+                    this.clearForm()
+                    this.$router.push("/admin/rewards")
+                }
+                else {
+                this.$swal("Add Failed", `You have to add Menu or Diamonds or Stocks`, "error")
+            }
             }
             else {
                 this.$swal("Add Failed", `You have to add Menu or Diamonds or Stocks`, "error")

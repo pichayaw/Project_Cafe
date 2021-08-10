@@ -124,7 +124,7 @@ export default {
 
             let res = await RewardApiStore.dispatch("deleteReward", payload)
             if (res.success) {
-                this.$swal("Delete success", `You can delete reward`, "success")
+                this.$swal("Delete success", ``, "success")
                 this.$router.push("/admin/rewards")
             }
             else {
