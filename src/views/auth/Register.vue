@@ -19,15 +19,27 @@
             <b-card-text>
                 <div class="user">
                 <label for="username">Username</label>
-                &nbsp;<input v-model="form.username" type="text" autocomplete="off" placeholder="Username">
+                 <div>
+                     &nbsp;<input v-model="form.username" type="text" autocomplete="off" placeholder="Username">
+                </div>
             </div>
             <div class="email">
                 <label for="email">Email</label>
+                <div>
                 &nbsp;<input v-model="form.email" type="text" autocomplete="off" placeholder="Email">
+                </div>
             </div>
             <div class="pass">
                 <label for="password">Password</label>
-                &nbsp;<input v-model="form.password" type="password" placeholder="Password">
+                <div>
+                    &nbsp;<input v-model="form.password" type="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="pass">
+                <label for="password">Confirm Password</label>
+                <div>
+                &nbsp;<input v-model="form.confirm " type="password" placeholder="Password">
+                </div>
             </div>
             </b-card-text>
 
@@ -49,19 +61,37 @@ export default {
                 username: "",
                 email: "",
                 password: "",
+                confirm : ""
             }
+            
         }
     },
     methods:{
         async register(){
-            let res = await AuthUser.dispatch('register', this.form)
-            if(res.success){
-                this.$swal("Register Success", `Welcome ${res.user.username}`,"success")
-                this.$router.push("/")
-            }else{
-                this.$swal("Register Failed", res.message, "error")
-               
+            if(this.form.username === "" || this.form.email === "" || this.form.password === "" || this.form.confirm ==="")
+            {
+                this.$swal("Register Failed", "Infomation cannot be pmtry", "error")
             }
+            else
+            {
+                if (this.form.confirm === this.form.password)
+                {
+                    let res = await AuthUser.dispatch('register', this.form)
+                    if(res.success){
+                        this.$swal("Register Success", `Welcome ${res.user.username}`,"success")
+                        this.$router.push("/")
+                    }else{
+                        this.$swal("Register Failed", res.message, "error")
+                    
+                    }
+                }
+                else
+                {
+                    this.$swal("Register Failed", "please make sure password is match !!", "error")
+                }
+            }
+            
+            
         }
     }
 }

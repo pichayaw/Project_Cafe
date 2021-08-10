@@ -68,7 +68,7 @@ export default {
           swal({
             title: "Confirm",
             text: `Would you like to redeem your ${item.menu}?`,
-            icon: "warning",
+            icon: "info",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {

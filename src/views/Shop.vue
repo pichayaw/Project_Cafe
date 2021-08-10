@@ -12,6 +12,7 @@
       <div class="shop-container">
         <div v-for="water in beverage" :key="water.id">
           <div class="beverage">
+            
             <label class="Big mb-3" for="">Menu :&nbsp;&nbsp;</label>
             <label class="Big mb-3" for=""> {{ water.menu }}</label
             ><br />
@@ -118,7 +119,7 @@ export default {
           swal({
             title: "Confirm",
             text: `Would you like to buy hot ${water.menu} ?`,
-            icon: "warning",
+            icon: "info",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
@@ -149,7 +150,7 @@ export default {
           swal({
             title: "Confirm",
             text: `Would you like to buy iced ${water.menu} ?`,
-            icon: "warning",
+            icon: "info",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
@@ -178,7 +179,7 @@ export default {
           swal({
             title: "Confirm",
             text: `Would you like to buy blened ${water.menu} ?`,
-            icon: "warning",
+            icon: "info",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
@@ -208,7 +209,7 @@ export default {
           swal({
             title: "Confirm",
             text: `Would you like to buy ${food.menu} ?`,
-            icon: "warning",
+            icon: "info",
             buttons: true,
             dangerMode: true,
           }).then(async (willRedeem) => {
