@@ -190,7 +190,7 @@ export default
 
         }
         else{
-            return {status : "error" , message : "Can not redeem"}
+            return {status : "error" , message : "Not enough money"}
         }
         
     },
@@ -224,7 +224,7 @@ export default
         }
         else{
             
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Not enough money"}
         }
         
     },
@@ -258,7 +258,7 @@ export default
         }
         else{
             
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Not enough money"}
         }
         
     },
@@ -293,7 +293,7 @@ export default
         }
         else{
             
-            return {status : "error" , message : "แลกไม่ได้"}
+            return {status : "error" , message : "Not enough money"}
         }
         
     },
