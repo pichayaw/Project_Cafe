@@ -37,13 +37,13 @@
       <table class="table table-striped table-hover" sticky-header="400px">
         <thead class="bg-secondary text-white">
           <tr>
-            <th colspan="4"><b-button variant="outline-light" @click="sortByEarn">Sort by Diaminds spent</b-button></th>
+            <th colspan="4"><b-button variant="outline-light" @click="sortByEarn">Sort by Diamonds spent</b-button></th>
           </tr>
           <tr>
             <th>No.</th>
             <th>Username</th>
             <th>Email</th>
-            <th>EARN Diamonds</th>
+            <th>Earn Diamonds</th>
           </tr>
         </thead>
         <tbody>

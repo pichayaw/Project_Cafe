@@ -78,7 +78,6 @@ export default {
               });
               await AuthUser.dispatch("redeem", item);
               location.reload()
-              // this.fetchRewards();
             } else {
               swal("Canceled");
             }
