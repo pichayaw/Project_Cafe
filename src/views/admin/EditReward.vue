@@ -104,11 +104,11 @@ export default {
 
         exit() {
             
-            if (this.form.diamonds >= 0 || this.form.Stock >= 0) {
+            if (this.form.diamonds >= 0 && this.form.Stock >= 0) {
                 this.$router.push('/admin/rewards')
             }
             else {
-                this.$swal("Edit Failed", `Cannot edit Diamonds or Stocks less than 0 , Diamonds : ${this.form.diamonds} & Stocks : ${this.form.Stock} `, "error")
+                this.$swal("Exit Failed", `Diamonds or Stocks less than 0 , Diamonds : ${this.form.diamonds} & Stocks : ${this.form.Stock} `, "error")
                 
             }
             
@@ -124,6 +124,7 @@ export default {
 
             let res = await RewardApiStore.dispatch("deleteReward", payload)
             if (res.success) {
+                this.$swal("Delete success", `You can delete reward`, "success")
                 this.$router.push("/admin/rewards")
             }
             else {
@@ -131,23 +132,6 @@ export default {
             }
         },
 
-
-        async deleteReward() {
-            let payload = {
-                id: this.id,
-                menu: this.form.menu,
-                diamonds: this.form.diamonds,
-                Stock: this.form.Stock
-            }
-
-            let res = await RewardApiStore.dispatch("deleteReward", payload)
-            if (res.success) {
-                this.$router.push("/admin/rewards")
-            }
-            else {
-                this.$swal("Delete Failed", res.message, "error")
-            }
-        },
     }
 
 }

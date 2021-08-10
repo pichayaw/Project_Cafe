@@ -98,20 +98,21 @@ export default new Vuex.Store({
                 let headers = AuthService.getApiHeader()
                 let res = await Axios.put(url, body, headers)
 
-                if (res.status === 200 && payload.diamonds >= 0) {
+                if (res.status === 200 && payload.diamonds >= 0 ) { //&& payload.diamonds >= 0
                     
-                    commit("edit", payload.index, res.data)
-                    return {
-                        success: true,
-                        data: res.data
-                      }
-                  } 
-                  else {
-                        return {
-                          success: false,
-                          message: "Diamond can’t be less than 1 point."
+                      commit("edit", payload.index, res.data)
+                      return {
+                          success: true,
+                          data: res.data
                         }
-                  }
+                    }
+                    
+                else {
+                      return {
+                        success: false,
+                        message: "Diamonds can’t be less than 0 point."
+                      }
+                }
                 
             } catch (e) {
                 if (e.response.state === 403) {
@@ -125,7 +126,7 @@ export default new Vuex.Store({
                   else {
                       return {
                         success: false,
-                        message: "Unknown error:" + e.response.data
+                        message: "Diamonds or Stocks can’t be less than 0 point." //+ e.response.data
                       }
                   }
             }
